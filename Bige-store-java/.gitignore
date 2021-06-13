@@ -18,7 +18,7 @@ target/
 .project
 .settings
 .springBeans
-.classpath/application-dev.yml
+
 
 ### IntelliJ IDEA ###
 .idea
@@ -33,6 +33,8 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+.classpath/application-dev.yml
 
 ######################################################################
 # Others
