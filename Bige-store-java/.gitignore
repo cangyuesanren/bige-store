@@ -34,7 +34,7 @@ dist/
 nbdist/
 .nb-gradle/
 
-.classpath/application-dev.yml
+*-dev.yml
 
 ######################################################################
 # Others
