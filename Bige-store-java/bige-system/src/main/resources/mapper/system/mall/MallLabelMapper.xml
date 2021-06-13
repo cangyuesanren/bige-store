@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bige.system.mapper.MallLabelMapper">
+
+    <resultMap type="MallLabel" id="MallLabelResult">
+        <result property="labelId"    column="label_id"    />
+        <result property="labelName"    column="label_name"    />
+        <result property="status"    column="status"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectMallLabelVo">
+        select label_id, label_name, status, create_by, update_time, update_by, create_time from mall_label
+    </sql>
+
+    <select id="selectMallLabelList" parameterType="MallLabel" resultMap="MallLabelResult">
+        <include refid="selectMallLabelVo"/>
+        <where>
+            <if test="labelName != null  and labelName != ''"> and label_name like concat('%', #{labelName}, '%')</if>
+            <if test="status != null "> and status = #{status}</if>
+        </where>
+    </select>
+
+    <select id="selectMallLabelById" parameterType="Long" resultMap="MallLabelResult">
+        <include refid="selectMallLabelVo"/>
+        where label_id = #{labelId}
+    </select>
+
+    <insert id="insertMallLabel" parameterType="MallLabel" useGeneratedKeys="true" keyProperty="labelId">
+        insert into mall_label
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="labelName != null">label_name,</if>
+            <if test="status != null">status,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="createTime != null">create_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="labelName != null">#{labelName},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+        </trim>
+    </insert>
+
+    <update id="updateMallLabel" parameterType="MallLabel">
+        update mall_label
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="labelName != null">label_name = #{labelName},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where label_id = #{labelId}
+    </update>
+
+    <delete id="deleteMallLabelById" parameterType="Long">
+        delete from mall_label where label_id = #{labelId}
+    </delete>
+
+    <delete id="deleteMallLabelByIds" parameterType="String">
+        delete from mall_label where label_id in
+        <foreach item="labelId" collection="array" open="(" separator="," close=")">
+            #{labelId}
+        </foreach>
+    </delete>
+</mapper>

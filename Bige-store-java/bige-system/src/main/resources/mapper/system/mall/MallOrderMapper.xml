@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bige.system.mapper.MallOrderMapper">
+    
+    <resultMap type="MallOrder" id="MallOrderResult">
+        <result property="orderId"    column="order_id"    />
+        <result property="orderName"    column="order_name"    />
+        <result property="orderNo"    column="order_no"    />
+        <result property="payOrderNo"    column="pay_order_no"    />
+        <result property="customerId"    column="customer_id"    />
+        <result property="orderTotalMoney"    column="order_total_money"    />
+        <result property="shopMoney"    column="shop_money"    />
+        <result property="preMoney"    column="pre_money"    />
+        <result property="payProductMoney"    column="pay_product_money"    />
+        <result property="couponMoney"    column="coupon_money"    />
+        <result property="payMoney"    column="pay_money"    />
+        <result property="buyerName"    column="buyer_name"    />
+        <result property="buyerPhone"    column="buyer_phone"    />
+        <result property="buyerAddress"    column="buyer_address"    />
+        <result property="status"    column="status"    />
+        <result property="acStatus"    column="ac_status"    />
+        <result property="payStatus"    column="pay_status"    />
+        <result property="postagePrice"    column="postage_price"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectMallOrderVo">
+        select order_id, order_name, order_no, pay_order_no, customer_id, order_total_money, shop_money, pre_money, pay_product_money, coupon_money, pay_money, buyer_name, buyer_phone, buyer_address, status, ac_status, pay_status, postage_price, create_time, update_time from mall_order
+    </sql>
+
+    <select id="selectMallOrderList" parameterType="MallOrder" resultMap="MallOrderResult">
+        <include refid="selectMallOrderVo"/>
+        <where>  
+            <if test="orderName != null  and orderName != ''"> and order_name like concat('%', #{orderName}, '%')</if>
+            <if test="orderNo != null  and orderNo != ''"> and order_no = #{orderNo}</if>
+            <if test="payOrderNo != null  and payOrderNo != ''"> and pay_order_no = #{payOrderNo}</if>
+            <if test="customerId != null "> and customer_id = #{customerId}</if>
+            <if test="orderTotalMoney != null "> and order_total_money = #{orderTotalMoney}</if>
+            <if test="shopMoney != null "> and shop_money = #{shopMoney}</if>
+            <if test="preMoney != null "> and pre_money = #{preMoney}</if>
+            <if test="payProductMoney != null "> and pay_product_money = #{payProductMoney}</if>
+            <if test="couponMoney != null "> and coupon_money = #{couponMoney}</if>
+            <if test="payMoney != null "> and pay_money = #{payMoney}</if>
+            <if test="buyerName != null  and buyerName != ''"> and buyer_name like concat('%', #{buyerName}, '%')</if>
+            <if test="buyerPhone != null  and buyerPhone != ''"> and buyer_phone = #{buyerPhone}</if>
+            <if test="buyerAddress != null  and buyerAddress != ''"> and buyer_address = #{buyerAddress}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="acStatus != null  and acStatus != ''"> and ac_status = #{acStatus}</if>
+            <if test="payStatus != null  and payStatus != ''"> and pay_status = #{payStatus}</if>
+            <if test="postagePrice != null "> and postage_price = #{postagePrice}</if>
+        </where>
+    </select>
+    
+    <select id="selectMallOrderById" parameterType="Long" resultMap="MallOrderResult">
+        <include refid="selectMallOrderVo"/>
+        where order_id = #{orderId}
+    </select>
+        
+    <insert id="insertMallOrder" parameterType="MallOrder">
+        insert into mall_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">order_id,</if>
+            <if test="orderName != null">order_name,</if>
+            <if test="orderNo != null">order_no,</if>
+            <if test="payOrderNo != null">pay_order_no,</if>
+            <if test="customerId != null">customer_id,</if>
+            <if test="orderTotalMoney != null">order_total_money,</if>
+            <if test="shopMoney != null">shop_money,</if>
+            <if test="preMoney != null">pre_money,</if>
+            <if test="payProductMoney != null">pay_product_money,</if>
+            <if test="couponMoney != null">coupon_money,</if>
+            <if test="payMoney != null">pay_money,</if>
+            <if test="buyerName != null">buyer_name,</if>
+            <if test="buyerPhone != null">buyer_phone,</if>
+            <if test="buyerAddress != null">buyer_address,</if>
+            <if test="status != null">status,</if>
+            <if test="acStatus != null">ac_status,</if>
+            <if test="payStatus != null">pay_status,</if>
+            <if test="postagePrice != null">postage_price,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">#{orderId},</if>
+            <if test="orderName != null">#{orderName},</if>
+            <if test="orderNo != null">#{orderNo},</if>
+            <if test="payOrderNo != null">#{payOrderNo},</if>
+            <if test="customerId != null">#{customerId},</if>
+            <if test="orderTotalMoney != null">#{orderTotalMoney},</if>
+            <if test="shopMoney != null">#{shopMoney},</if>
+            <if test="preMoney != null">#{preMoney},</if>
+            <if test="payProductMoney != null">#{payProductMoney},</if>
+            <if test="couponMoney != null">#{couponMoney},</if>
+            <if test="payMoney != null">#{payMoney},</if>
+            <if test="buyerName != null">#{buyerName},</if>
+            <if test="buyerPhone != null">#{buyerPhone},</if>
+            <if test="buyerAddress != null">#{buyerAddress},</if>
+            <if test="status != null">#{status},</if>
+            <if test="acStatus != null">#{acStatus},</if>
+            <if test="payStatus != null">#{payStatus},</if>
+            <if test="postagePrice != null">#{postagePrice},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMallOrder" parameterType="MallOrder">
+        update mall_order
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="orderName != null">order_name = #{orderName},</if>
+            <if test="orderNo != null">order_no = #{orderNo},</if>
+            <if test="payOrderNo != null">pay_order_no = #{payOrderNo},</if>
+            <if test="customerId != null">customer_id = #{customerId},</if>
+            <if test="orderTotalMoney != null">order_total_money = #{orderTotalMoney},</if>
+            <if test="shopMoney != null">shop_money = #{shopMoney},</if>
+            <if test="preMoney != null">pre_money = #{preMoney},</if>
+            <if test="payProductMoney != null">pay_product_money = #{payProductMoney},</if>
+            <if test="couponMoney != null">coupon_money = #{couponMoney},</if>
+            <if test="payMoney != null">pay_money = #{payMoney},</if>
+            <if test="buyerName != null">buyer_name = #{buyerName},</if>
+            <if test="buyerPhone != null">buyer_phone = #{buyerPhone},</if>
+            <if test="buyerAddress != null">buyer_address = #{buyerAddress},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="acStatus != null">ac_status = #{acStatus},</if>
+            <if test="payStatus != null">pay_status = #{payStatus},</if>
+            <if test="postagePrice != null">postage_price = #{postagePrice},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where order_id = #{orderId}
+    </update>
+
+    <delete id="deleteMallOrderById" parameterType="Long">
+        delete from mall_order where order_id = #{orderId}
+    </delete>
+
+    <delete id="deleteMallOrderByIds" parameterType="String">
+        delete from mall_order where order_id in 
+        <foreach item="orderId" collection="array" open="(" separator="," close=")">
+            #{orderId}
+        </foreach>
+    </delete>
+</mapper>

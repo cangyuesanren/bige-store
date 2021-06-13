@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bige.system.mapper.MallOrderItemMapper">
+    
+    <resultMap type="MallOrderItem" id="MallOrderItemResult">
+        <result property="orderItemId"    column="order_item_id"    />
+        <result property="orderItemNo"    column="order_item_no"    />
+        <result property="orderId"    column="order_id"    />
+        <result property="payOrderNo"    column="pay_order_no"    />
+        <result property="customerId"    column="customer_id"    />
+        <result property="productId"    column="product_id"    />
+        <result property="goodsId"    column="goods_id"    />
+        <result property="firstCategoryId"    column="first_category_id"    />
+        <result property="secondCategoryId"    column="second_category_id"    />
+        <result property="thirdCategoryId"    column="third_category_id"    />
+        <result property="productName"    column="product_name"    />
+        <result property="productImg"    column="product_img"    />
+        <result property="costPrice"    column="cost_price"    />
+        <result property="salePrice"    column="sale_price"    />
+        <result property="buyNum"    column="buy_num"    />
+        <result property="orderTotalMoney"    column="order_total_money"    />
+        <result property="preMoney"    column="pre_money"    />
+        <result property="payProductMoney"    column="pay_product_money"    />
+        <result property="couponMoney"    column="coupon_money"    />
+        <result property="payMoney"    column="pay_money"    />
+        <result property="shopMoney"    column="shop_money"    />
+        <result property="goodsAttr"    column="goods_attr"    />
+        <result property="skuCode"    column="sku_code"    />
+        <result property="commentStatus"    column="comment_status"    />
+        <result property="status"    column="status"    />
+        <result property="deliveryType"    column="delivery_type"    />
+        <result property="postagePrice"    column="postage_price"    />
+        <result property="invoiceType"    column="invoice_type"    />
+        <result property="invoiceStatus"    column="invoice_status"    />
+        <result property="buyerMsg"    column="buyer_msg"    />
+        <result property="supplierId"    column="supplier_id"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectMallOrderItemVo">
+        select order_item_id, order_item_no, order_id, pay_order_no, customer_id, product_id, goods_id, first_category_id, second_category_id, third_category_id, product_name, product_img, cost_price, sale_price, buy_num, order_total_money, pre_money, pay_product_money, coupon_money, pay_money, shop_money, goods_attr, sku_code, comment_status, status, delivery_type, postage_price, invoice_type, invoice_status, buyer_msg, supplier_id, create_time, update_time from mall_order_item
+    </sql>
+
+    <select id="selectMallOrderItemList" parameterType="MallOrderItem" resultMap="MallOrderItemResult">
+        <include refid="selectMallOrderItemVo"/>
+        <where>  
+            <if test="orderItemNo != null  and orderItemNo != ''"> and order_item_no = #{orderItemNo}</if>
+            <if test="orderId != null "> and order_id = #{orderId}</if>
+            <if test="payOrderNo != null  and payOrderNo != ''"> and pay_order_no = #{payOrderNo}</if>
+            <if test="customerId != null "> and customer_id = #{customerId}</if>
+            <if test="productId != null "> and product_id = #{productId}</if>
+            <if test="goodsId != null "> and goods_id = #{goodsId}</if>
+            <if test="firstCategoryId != null "> and first_category_id = #{firstCategoryId}</if>
+            <if test="secondCategoryId != null "> and second_category_id = #{secondCategoryId}</if>
+            <if test="thirdCategoryId != null "> and third_category_id = #{thirdCategoryId}</if>
+            <if test="productName != null  and productName != ''"> and product_name like concat('%', #{productName}, '%')</if>
+            <if test="productImg != null  and productImg != ''"> and product_img = #{productImg}</if>
+            <if test="costPrice != null "> and cost_price = #{costPrice}</if>
+            <if test="salePrice != null "> and sale_price = #{salePrice}</if>
+            <if test="buyNum != null "> and buy_num = #{buyNum}</if>
+            <if test="orderTotalMoney != null "> and order_total_money = #{orderTotalMoney}</if>
+            <if test="preMoney != null "> and pre_money = #{preMoney}</if>
+            <if test="payProductMoney != null "> and pay_product_money = #{payProductMoney}</if>
+            <if test="couponMoney != null "> and coupon_money = #{couponMoney}</if>
+            <if test="payMoney != null "> and pay_money = #{payMoney}</if>
+            <if test="shopMoney != null "> and shop_money = #{shopMoney}</if>
+            <if test="goodsAttr != null  and goodsAttr != ''"> and goods_attr = #{goodsAttr}</if>
+            <if test="skuCode != null  and skuCode != ''"> and sku_code = #{skuCode}</if>
+            <if test="commentStatus != null  and commentStatus != ''"> and comment_status = #{commentStatus}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="deliveryType != null  and deliveryType != ''"> and delivery_type = #{deliveryType}</if>
+            <if test="postagePrice != null "> and postage_price = #{postagePrice}</if>
+            <if test="invoiceType != null  and invoiceType != ''"> and invoice_type = #{invoiceType}</if>
+            <if test="invoiceStatus != null  and invoiceStatus != ''"> and invoice_status = #{invoiceStatus}</if>
+            <if test="buyerMsg != null  and buyerMsg != ''"> and buyer_msg = #{buyerMsg}</if>
+            <if test="supplierId != null "> and supplier_id = #{supplierId}</if>
+        </where>
+    </select>
+    
+    <select id="selectMallOrderItemById" parameterType="Long" resultMap="MallOrderItemResult">
+        <include refid="selectMallOrderItemVo"/>
+        where order_item_id = #{orderItemId}
+    </select>
+        
+    <insert id="insertMallOrderItem" parameterType="MallOrderItem">
+        insert into mall_order_item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderItemId != null">order_item_id,</if>
+            <if test="orderItemNo != null">order_item_no,</if>
+            <if test="orderId != null">order_id,</if>
+            <if test="payOrderNo != null">pay_order_no,</if>
+            <if test="customerId != null">customer_id,</if>
+            <if test="productId != null">product_id,</if>
+            <if test="goodsId != null">goods_id,</if>
+            <if test="firstCategoryId != null">first_category_id,</if>
+            <if test="secondCategoryId != null">second_category_id,</if>
+            <if test="thirdCategoryId != null">third_category_id,</if>
+            <if test="productName != null">product_name,</if>
+            <if test="productImg != null">product_img,</if>
+            <if test="costPrice != null">cost_price,</if>
+            <if test="salePrice != null">sale_price,</if>
+            <if test="buyNum != null">buy_num,</if>
+            <if test="orderTotalMoney != null">order_total_money,</if>
+            <if test="preMoney != null">pre_money,</if>
+            <if test="payProductMoney != null">pay_product_money,</if>
+            <if test="couponMoney != null">coupon_money,</if>
+            <if test="payMoney != null">pay_money,</if>
+            <if test="shopMoney != null">shop_money,</if>
+            <if test="goodsAttr != null">goods_attr,</if>
+            <if test="skuCode != null">sku_code,</if>
+            <if test="commentStatus != null">comment_status,</if>
+            <if test="status != null">status,</if>
+            <if test="deliveryType != null">delivery_type,</if>
+            <if test="postagePrice != null">postage_price,</if>
+            <if test="invoiceType != null">invoice_type,</if>
+            <if test="invoiceStatus != null">invoice_status,</if>
+            <if test="buyerMsg != null">buyer_msg,</if>
+            <if test="supplierId != null">supplier_id,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderItemId != null">#{orderItemId},</if>
+            <if test="orderItemNo != null">#{orderItemNo},</if>
+            <if test="orderId != null">#{orderId},</if>
+            <if test="payOrderNo != null">#{payOrderNo},</if>
+            <if test="customerId != null">#{customerId},</if>
+            <if test="productId != null">#{productId},</if>
+            <if test="goodsId != null">#{goodsId},</if>
+            <if test="firstCategoryId != null">#{firstCategoryId},</if>
+            <if test="secondCategoryId != null">#{secondCategoryId},</if>
+            <if test="thirdCategoryId != null">#{thirdCategoryId},</if>
+            <if test="productName != null">#{productName},</if>
+            <if test="productImg != null">#{productImg},</if>
+            <if test="costPrice != null">#{costPrice},</if>
+            <if test="salePrice != null">#{salePrice},</if>
+            <if test="buyNum != null">#{buyNum},</if>
+            <if test="orderTotalMoney != null">#{orderTotalMoney},</if>
+            <if test="preMoney != null">#{preMoney},</if>
+            <if test="payProductMoney != null">#{payProductMoney},</if>
+            <if test="couponMoney != null">#{couponMoney},</if>
+            <if test="payMoney != null">#{payMoney},</if>
+            <if test="shopMoney != null">#{shopMoney},</if>
+            <if test="goodsAttr != null">#{goodsAttr},</if>
+            <if test="skuCode != null">#{skuCode},</if>
+            <if test="commentStatus != null">#{commentStatus},</if>
+            <if test="status != null">#{status},</if>
+            <if test="deliveryType != null">#{deliveryType},</if>
+            <if test="postagePrice != null">#{postagePrice},</if>
+            <if test="invoiceType != null">#{invoiceType},</if>
+            <if test="invoiceStatus != null">#{invoiceStatus},</if>
+            <if test="buyerMsg != null">#{buyerMsg},</if>
+            <if test="supplierId != null">#{supplierId},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMallOrderItem" parameterType="MallOrderItem">
+        update mall_order_item
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="orderItemNo != null">order_item_no = #{orderItemNo},</if>
+            <if test="orderId != null">order_id = #{orderId},</if>
+            <if test="payOrderNo != null">pay_order_no = #{payOrderNo},</if>
+            <if test="customerId != null">customer_id = #{customerId},</if>
+            <if test="productId != null">product_id = #{productId},</if>
+            <if test="goodsId != null">goods_id = #{goodsId},</if>
+            <if test="firstCategoryId != null">first_category_id = #{firstCategoryId},</if>
+            <if test="secondCategoryId != null">second_category_id = #{secondCategoryId},</if>
+            <if test="thirdCategoryId != null">third_category_id = #{thirdCategoryId},</if>
+            <if test="productName != null">product_name = #{productName},</if>
+            <if test="productImg != null">product_img = #{productImg},</if>
+            <if test="costPrice != null">cost_price = #{costPrice},</if>
+            <if test="salePrice != null">sale_price = #{salePrice},</if>
+            <if test="buyNum != null">buy_num = #{buyNum},</if>
+            <if test="orderTotalMoney != null">order_total_money = #{orderTotalMoney},</if>
+            <if test="preMoney != null">pre_money = #{preMoney},</if>
+            <if test="payProductMoney != null">pay_product_money = #{payProductMoney},</if>
+            <if test="couponMoney != null">coupon_money = #{couponMoney},</if>
+            <if test="payMoney != null">pay_money = #{payMoney},</if>
+            <if test="shopMoney != null">shop_money = #{shopMoney},</if>
+            <if test="goodsAttr != null">goods_attr = #{goodsAttr},</if>
+            <if test="skuCode != null">sku_code = #{skuCode},</if>
+            <if test="commentStatus != null">comment_status = #{commentStatus},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="deliveryType != null">delivery_type = #{deliveryType},</if>
+            <if test="postagePrice != null">postage_price = #{postagePrice},</if>
+            <if test="invoiceType != null">invoice_type = #{invoiceType},</if>
+            <if test="invoiceStatus != null">invoice_status = #{invoiceStatus},</if>
+            <if test="buyerMsg != null">buyer_msg = #{buyerMsg},</if>
+            <if test="supplierId != null">supplier_id = #{supplierId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where order_item_id = #{orderItemId}
+    </update>
+
+    <delete id="deleteMallOrderItemById" parameterType="Long">
+        delete from mall_order_item where order_item_id = #{orderItemId}
+    </delete>
+
+    <delete id="deleteMallOrderItemByIds" parameterType="String">
+        delete from mall_order_item where order_item_id in 
+        <foreach item="orderItemId" collection="array" open="(" separator="," close=")">
+            #{orderItemId}
+        </foreach>
+    </delete>
+</mapper>

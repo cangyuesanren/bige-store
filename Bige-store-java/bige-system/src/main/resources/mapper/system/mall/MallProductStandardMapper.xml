@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bige.system.mapper.MallProductStandardMapper">
+    
+    <resultMap type="MallProductStandard" id="MallProductStandardResult">
+        <result property="productId"    column="product_id"    />
+        <result property="standardName"    column="standard_name"    />
+        <result property="standardValue"    column="standard_value"    />
+        <result property="sort"    column="sort"    />
+    </resultMap>
+
+    <sql id="selectMallProductStandardVo">
+        select product_id, standard_name, standard_value, sort from mall_product_standard
+    </sql>
+
+    <select id="selectMallProductStandardList" parameterType="MallProductStandard" resultMap="MallProductStandardResult">
+        <include refid="selectMallProductStandardVo"/>
+        <where>  
+            <if test="standardName != null  and standardName != ''"> and standard_name like concat('%', #{standardName}, '%')</if>
+            <if test="standardValue != null  and standardValue != ''"> and standard_value = #{standardValue}</if>
+            <if test="sort != null "> and sort = #{sort}</if>
+        </where>
+    </select>
+    
+    <select id="selectMallProductStandardById" parameterType="Long" resultMap="MallProductStandardResult">
+        <include refid="selectMallProductStandardVo"/>
+        where product_id = #{productId}
+    </select>
+        
+    <insert id="insertMallProductStandard" parameterType="MallProductStandard">
+        insert into mall_product_standard
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productId != null">product_id,</if>
+            <if test="standardName != null">standard_name,</if>
+            <if test="standardValue != null">standard_value,</if>
+            <if test="sort != null">sort,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productId != null">#{productId},</if>
+            <if test="standardName != null">#{standardName},</if>
+            <if test="standardValue != null">#{standardValue},</if>
+            <if test="sort != null">#{sort},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMallProductStandard" parameterType="MallProductStandard">
+        update mall_product_standard
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="standardName != null">standard_name = #{standardName},</if>
+            <if test="standardValue != null">standard_value = #{standardValue},</if>
+            <if test="sort != null">sort = #{sort},</if>
+        </trim>
+        where product_id = #{productId}
+    </update>
+
+    <delete id="deleteMallProductStandardById" parameterType="Long">
+        delete from mall_product_standard where product_id = #{productId}
+    </delete>
+
+    <delete id="deleteMallProductStandardByIds" parameterType="String">
+        delete from mall_product_standard where product_id in 
+        <foreach item="productId" collection="array" open="(" separator="," close=")">
+            #{productId}
+        </foreach>
+    </delete>
+</mapper>

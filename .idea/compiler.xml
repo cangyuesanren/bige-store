@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="bige-generator" />
+        <module name="bige-quartz" />
+        <module name="bige-common" />
+        <module name="bige-admin" />
+        <module name="bige-system" />
+        <module name="bige-framework" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="bige" target="1.5" />
+      <module name="bige-admin" target="1.5" />
+      <module name="bige-common" target="1.5" />
+      <module name="bige-framework" target="1.5" />
+      <module name="bige-generator" target="1.5" />
+      <module name="bige-quartz" target="1.5" />
+      <module name="bige-system" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

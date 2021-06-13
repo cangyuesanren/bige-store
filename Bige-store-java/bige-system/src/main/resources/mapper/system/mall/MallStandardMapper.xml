@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bige.system.mapper.MallStandardMapper">
+    
+    <resultMap type="MallStandard" id="MallStandardResult">
+        <result property="standardId"    column="standard_id"    />
+        <result property="firstCategoryId"    column="first_category_id"    />
+        <result property="secondCategory"    column="second_category"    />
+        <result property="thirdCategoryId"    column="third_category_id"    />
+        <result property="standardName"    column="standard_name"    />
+        <result property="standard"    column="standard_"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectMallStandardVo">
+        select standard_id, first_category_id, second_category, third_category_id, standard_name, standard_, create_time, create_by, update_time from mall_standard
+    </sql>
+
+    <select id="selectMallStandardList" parameterType="MallStandard" resultMap="MallStandardResult">
+        <include refid="selectMallStandardVo"/>
+        <where>  
+            <if test="standardId != null "> and standard_id = #{standardId}</if>
+            <if test="firstCategoryId != null "> and first_category_id = #{firstCategoryId}</if>
+            <if test="secondCategory != null "> and second_category = #{secondCategory}</if>
+            <if test="thirdCategoryId != null "> and third_category_id = #{thirdCategoryId}</if>
+            <if test="standardName != null  and standardName != ''"> and standard_name like concat('%', #{standardName}, '%')</if>
+            <if test="standard != null  and standard != ''"> and standard_ = #{standard}</if>
+        </where>
+    </select>
+    
+    <select id="selectMallStandardById" parameterType="Long" resultMap="MallStandardResult">
+        <include refid="selectMallStandardVo"/>
+        where standard_id = #{standardId}
+    </select>
+        
+    <insert id="insertMallStandard" parameterType="MallStandard">
+        insert into mall_standard
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="standardId != null">standard_id,</if>
+            <if test="firstCategoryId != null">first_category_id,</if>
+            <if test="secondCategory != null">second_category,</if>
+            <if test="thirdCategoryId != null">third_category_id,</if>
+            <if test="standardName != null">standard_name,</if>
+            <if test="standard != null">standard_,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="standardId != null">#{standardId},</if>
+            <if test="firstCategoryId != null">#{firstCategoryId},</if>
+            <if test="secondCategory != null">#{secondCategory},</if>
+            <if test="thirdCategoryId != null">#{thirdCategoryId},</if>
+            <if test="standardName != null">#{standardName},</if>
+            <if test="standard != null">#{standard},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMallStandard" parameterType="MallStandard">
+        update mall_standard
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="firstCategoryId != null">first_category_id = #{firstCategoryId},</if>
+            <if test="secondCategory != null">second_category = #{secondCategory},</if>
+            <if test="thirdCategoryId != null">third_category_id = #{thirdCategoryId},</if>
+            <if test="standardName != null">standard_name = #{standardName},</if>
+            <if test="standard != null">standard_ = #{standard},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where standard_id = #{standardId}
+    </update>
+
+    <delete id="deleteMallStandardById" parameterType="Long">
+        delete from mall_standard where standard_id = #{standardId}
+    </delete>
+
+    <delete id="deleteMallStandardByIds" parameterType="String">
+        delete from mall_standard where standard_id in 
+        <foreach item="standardId" collection="array" open="(" separator="," close=")">
+            #{standardId}
+        </foreach>
+    </delete>
+</mapper>

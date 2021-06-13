@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bige.system.mapper.MallProductImgsMapper">
+    
+    <resultMap type="MallProductImgs" id="MallProductImgsResult">
+        <result property="productImgId"    column="product_img_id"    />
+        <result property="productId"    column="product_id"    />
+        <result property="productImg"    column="product_img"    />
+    </resultMap>
+
+    <sql id="selectMallProductImgsVo">
+        select product_img_id, product_id, product_img from mall_product_imgs
+    </sql>
+
+    <select id="selectMallProductImgsList" parameterType="MallProductImgs" resultMap="MallProductImgsResult">
+        <include refid="selectMallProductImgsVo"/>
+        <where>  
+            <if test="productId != null "> and product_id = #{productId}</if>
+            <if test="productImg != null  and productImg != ''"> and product_img = #{productImg}</if>
+        </where>
+    </select>
+    
+    <select id="selectMallProductImgsById" parameterType="Long" resultMap="MallProductImgsResult">
+        <include refid="selectMallProductImgsVo"/>
+        where product_img_id = #{productImgId}
+    </select>
+        
+    <insert id="insertMallProductImgs" parameterType="MallProductImgs">
+        insert into mall_product_imgs
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productImgId != null">product_img_id,</if>
+            <if test="productId != null">product_id,</if>
+            <if test="productImg != null">product_img,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productImgId != null">#{productImgId},</if>
+            <if test="productId != null">#{productId},</if>
+            <if test="productImg != null">#{productImg},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMallProductImgs" parameterType="MallProductImgs">
+        update mall_product_imgs
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="productId != null">product_id = #{productId},</if>
+            <if test="productImg != null">product_img = #{productImg},</if>
+        </trim>
+        where product_img_id = #{productImgId}
+    </update>
+
+    <delete id="deleteMallProductImgsById" parameterType="Long">
+        delete from mall_product_imgs where product_img_id = #{productImgId}
+    </delete>
+
+    <delete id="deleteMallProductImgsByIds" parameterType="String">
+        delete from mall_product_imgs where product_img_id in 
+        <foreach item="productImgId" collection="array" open="(" separator="," close=")">
+            #{productImgId}
+        </foreach>
+    </delete>
+</mapper>

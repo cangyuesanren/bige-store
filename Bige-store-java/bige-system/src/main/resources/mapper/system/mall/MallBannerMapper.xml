@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bige.system.mapper.MallBannerMapper">
+    
+    <resultMap type="MallBanner" id="MallBannerResult">
+        <result property="bannerId"    column="banner_id"    />
+        <result property="bannerName"    column="banner_name"    />
+        <result property="bannerImg"    column="banner_img"    />
+        <result property="linkUrl"    column="link_url"    />
+        <result property="type"    column="type"    />
+        <result property="sort"    column="sort"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectMallBannerVo">
+        select banner_id, banner_name, banner_img, link_url, type, sort, create_time, update_by, update_time from mall_banner
+    </sql>
+
+    <select id="selectMallBannerList" parameterType="MallBanner" resultMap="MallBannerResult">
+        <include refid="selectMallBannerVo"/>
+        <where>  
+            <if test="bannerName != null  and bannerName != ''"> and banner_name like concat('%', #{bannerName}, '%')</if>
+            <if test="bannerImg != null  and bannerImg != ''"> and banner_img = #{bannerImg}</if>
+            <if test="linkUrl != null  and linkUrl != ''"> and link_url = #{linkUrl}</if>
+            <if test="type != null "> and type = #{type}</if>
+            <if test="sort != null "> and sort = #{sort}</if>
+        </where>
+    </select>
+    
+    <select id="selectMallBannerById" parameterType="Long" resultMap="MallBannerResult">
+        <include refid="selectMallBannerVo"/>
+        where banner_id = #{bannerId}
+    </select>
+        
+    <insert id="insertMallBanner" parameterType="MallBanner">
+        insert into mall_banner
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bannerId != null">banner_id,</if>
+            <if test="bannerName != null">banner_name,</if>
+            <if test="bannerImg != null">banner_img,</if>
+            <if test="linkUrl != null">link_url,</if>
+            <if test="type != null">type,</if>
+            <if test="sort != null">sort,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bannerId != null">#{bannerId},</if>
+            <if test="bannerName != null">#{bannerName},</if>
+            <if test="bannerImg != null">#{bannerImg},</if>
+            <if test="linkUrl != null">#{linkUrl},</if>
+            <if test="type != null">#{type},</if>
+            <if test="sort != null">#{sort},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMallBanner" parameterType="MallBanner">
+        update mall_banner
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="bannerName != null">banner_name = #{bannerName},</if>
+            <if test="bannerImg != null">banner_img = #{bannerImg},</if>
+            <if test="linkUrl != null">link_url = #{linkUrl},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="sort != null">sort = #{sort},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where banner_id = #{bannerId}
+    </update>
+
+    <delete id="deleteMallBannerById" parameterType="Long">
+        delete from mall_banner where banner_id = #{bannerId}
+    </delete>
+
+    <delete id="deleteMallBannerByIds" parameterType="String">
+        delete from mall_banner where banner_id in 
+        <foreach item="bannerId" collection="array" open="(" separator="," close=")">
+            #{bannerId}
+        </foreach>
+    </delete>
+</mapper>

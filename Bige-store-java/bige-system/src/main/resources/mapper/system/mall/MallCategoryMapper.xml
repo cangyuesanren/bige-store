@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bige.system.mapper.MallCategoryMapper">
+    
+    <resultMap type="MallCategory" id="MallCategoryResult">
+        <result property="categoryId"    column="category_id"    />
+        <result property="categoryName"    column="category_name"    />
+        <result property="categoryImg"    column="category_img"    />
+        <result property="parentId"    column="parent_id"    />
+        <result property="categoryType"    column="category_type"    />
+        <result property="sort"    column="sort"    />
+        <result property="chargeRate"    column="charge_rate"    />
+        <result property="status"    column="status"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+    </resultMap>
+
+    <sql id="selectMallCategoryVo">
+        select category_id, category_name, category_img, parent_id, category_type, sort, charge_rate, status, create_time, create_by, update_time, update_by from mall_category
+    </sql>
+
+    <select id="selectMallCategoryList" parameterType="MallCategory" resultMap="MallCategoryResult">
+        <include refid="selectMallCategoryVo"/>
+        <where>  
+            <if test="categoryName != null  and categoryName != ''"> and category_name like concat('%', #{categoryName}, '%')</if>
+            <if test="categoryImg != null  and categoryImg != ''"> and category_img = #{categoryImg}</if>
+            <if test="parentId != null "> and parent_id = #{parentId}</if>
+            <if test="categoryType != null  and categoryType != ''"> and category_type = #{categoryType}</if>
+            <if test="sort != null "> and sort = #{sort}</if>
+            <if test="chargeRate != null "> and charge_rate = #{chargeRate}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectMallCategoryById" parameterType="Long" resultMap="MallCategoryResult">
+        <include refid="selectMallCategoryVo"/>
+        where category_id = #{categoryId}
+    </select>
+        
+    <insert id="insertMallCategory" parameterType="MallCategory" useGeneratedKeys="true" keyProperty="categoryId">
+        insert into mall_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="categoryName != null">category_name,</if>
+            <if test="categoryImg != null">category_img,</if>
+            <if test="parentId != null">parent_id,</if>
+            <if test="categoryType != null">category_type,</if>
+            <if test="sort != null">sort,</if>
+            <if test="chargeRate != null">charge_rate,</if>
+            <if test="status != null">status,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateBy != null">update_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="categoryName != null">#{categoryName},</if>
+            <if test="categoryImg != null">#{categoryImg},</if>
+            <if test="parentId != null">#{parentId},</if>
+            <if test="categoryType != null">#{categoryType},</if>
+            <if test="sort != null">#{sort},</if>
+            <if test="chargeRate != null">#{chargeRate},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMallCategory" parameterType="MallCategory">
+        update mall_category
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="categoryName != null">category_name = #{categoryName},</if>
+            <if test="categoryImg != null">category_img = #{categoryImg},</if>
+            <if test="parentId != null">parent_id = #{parentId},</if>
+            <if test="categoryType != null">category_type = #{categoryType},</if>
+            <if test="sort != null">sort = #{sort},</if>
+            <if test="chargeRate != null">charge_rate = #{chargeRate},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+        </trim>
+        where category_id = #{categoryId}
+    </update>
+
+    <delete id="deleteMallCategoryById" parameterType="Long">
+        delete from mall_category where category_id = #{categoryId}
+    </delete>
+
+    <delete id="deleteMallCategoryByIds" parameterType="String">
+        delete from mall_category where category_id in 
+        <foreach item="categoryId" collection="array" open="(" separator="," close=")">
+            #{categoryId}
+        </foreach>
+    </delete>
+</mapper>
