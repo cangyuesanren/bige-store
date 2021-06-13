@@ -13,9 +13,9 @@ spring:
             slave:
                 # 从数据源开关/默认关闭
                 enabled: false
-                url: 
-                username: 
-                password: 
+                url:
+                username:
+                password:
             # 初始连接数
             initialSize: 5
             # 最小连接池数量
@@ -35,7 +35,7 @@ spring:
             testWhileIdle: true
             testOnBorrow: false
             testOnReturn: false
-            webStatFilter: 
+            webStatFilter:
                 enabled: true
             statViewServlet:
                 enabled: true
@@ -55,9 +55,10 @@ spring:
                 wall:
                     config:
                         multi-statement-allow: true
+
     #阿里云OSS
     cloud:
-        access-key: 你的access-key
-        secret-key: 你的secret-key
+        access-key: LTAI5t7Q62uVnJ2SMFeTuUBL
+        secret-key: A1dqzCXkYZdF5elHvkCxPJkDOxdwx8
         endpoint: oss-cn-shenzhen.aliyuncs.com
         bucket: bigeyun

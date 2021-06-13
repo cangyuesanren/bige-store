@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bige.system.mapper.MallCartMapper">
+    
+    <resultMap type="MallCart" id="MallCartResult">
+        <result property="cartId"    column="cart_id"    />
+        <result property="customerId"    column="customer_id"    />
+        <result property="goodsId"    column="goods_id"    />
+        <result property="productId"    column="product_id"    />
+        <result property="salePrice"    column="sale_price"    />
+        <result property="standardJson"    column="standard_json"    />
+        <result property="productName"    column="product_name"    />
+        <result property="number"    column="number"    />
+        <result property="productImg"    column="product_img"    />
+        <result property="buyerMsg"    column="buyer_msg"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectMallCartVo">
+        select cart_id, customer_id, goods_id, product_id, sale_price, standard_json, product_name, number, product_img, buyer_msg, create_time, update_time from mall_cart
+    </sql>
+
+    <select id="selectMallCartList" parameterType="MallCart" resultMap="MallCartResult">
+        <include refid="selectMallCartVo"/>
+        <where>  
+            <if test="customerId != null "> and customer_id = #{customerId}</if>
+            <if test="goodsId != null "> and goods_id = #{goodsId}</if>
+            <if test="productId != null "> and product_id = #{productId}</if>
+            <if test="salePrice != null "> and sale_price = #{salePrice}</if>
+            <if test="standardJson != null  and standardJson != ''"> and standard_json = #{standardJson}</if>
+            <if test="productName != null  and productName != ''"> and product_name like concat('%', #{productName}, '%')</if>
+            <if test="number != null "> and number = #{number}</if>
+            <if test="productImg != null  and productImg != ''"> and product_img = #{productImg}</if>
+            <if test="buyerMsg != null  and buyerMsg != ''"> and buyer_msg = #{buyerMsg}</if>
+        </where>
+    </select>
+    
+    <select id="selectMallCartById" parameterType="Long" resultMap="MallCartResult">
+        <include refid="selectMallCartVo"/>
+        where cart_id = #{cartId}
+    </select>
+        
+    <insert id="insertMallCart" parameterType="MallCart">
+        insert into mall_cart
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cartId != null">cart_id,</if>
+            <if test="customerId != null">customer_id,</if>
+            <if test="goodsId != null">goods_id,</if>
+            <if test="productId != null">product_id,</if>
+            <if test="salePrice != null">sale_price,</if>
+            <if test="standardJson != null">standard_json,</if>
+            <if test="productName != null">product_name,</if>
+            <if test="number != null">number,</if>
+            <if test="productImg != null">product_img,</if>
+            <if test="buyerMsg != null">buyer_msg,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cartId != null">#{cartId},</if>
+            <if test="customerId != null">#{customerId},</if>
+            <if test="goodsId != null">#{goodsId},</if>
+            <if test="productId != null">#{productId},</if>
+            <if test="salePrice != null">#{salePrice},</if>
+            <if test="standardJson != null">#{standardJson},</if>
+            <if test="productName != null">#{productName},</if>
+            <if test="number != null">#{number},</if>
+            <if test="productImg != null">#{productImg},</if>
+            <if test="buyerMsg != null">#{buyerMsg},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMallCart" parameterType="MallCart">
+        update mall_cart
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="customerId != null">customer_id = #{customerId},</if>
+            <if test="goodsId != null">goods_id = #{goodsId},</if>
+            <if test="productId != null">product_id = #{productId},</if>
+            <if test="salePrice != null">sale_price = #{salePrice},</if>
+            <if test="standardJson != null">standard_json = #{standardJson},</if>
+            <if test="productName != null">product_name = #{productName},</if>
+            <if test="number != null">number = #{number},</if>
+            <if test="productImg != null">product_img = #{productImg},</if>
+            <if test="buyerMsg != null">buyer_msg = #{buyerMsg},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where cart_id = #{cartId}
+    </update>
+
+    <delete id="deleteMallCartById" parameterType="Long">
+        delete from mall_cart where cart_id = #{cartId}
+    </delete>
+
+    <delete id="deleteMallCartByIds" parameterType="String">
+        delete from mall_cart where cart_id in 
+        <foreach item="cartId" collection="array" open="(" separator="," close=")">
+            #{cartId}
+        </foreach>
+    </delete>
+</mapper>

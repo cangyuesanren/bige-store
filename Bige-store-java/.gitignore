@@ -18,6 +18,7 @@ target/
 .project
 .settings
 .springBeans
+.classpath/application-dev.yml
 
 ### IntelliJ IDEA ###
 .idea

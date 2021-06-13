@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bige.system.mapper.MallCustomerShopMapper">
+    
+    <resultMap type="MallCustomerShop" id="MallCustomerShopResult">
+        <result property="shopId"    column="shop_id"    />
+        <result property="customerId"    column="customer_id"    />
+        <result property="shopNo"    column="shop_no"    />
+        <result property="shopValue"    column="shop_value"    />
+        <result property="shopBalance"    column="shop_balance"    />
+        <result property="startUseTime"    column="start_use_time"    />
+        <result property="endUseTime"    column="end_use_time"    />
+        <result property="status"    column="status"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectMallCustomerShopVo">
+        select shop_id, customer_id, shop_no, shop_value, shop_balance, start_use_time, end_use_time, status, create_time from mall_customer_shop
+    </sql>
+
+    <select id="selectMallCustomerShopList" parameterType="MallCustomerShop" resultMap="MallCustomerShopResult">
+        <include refid="selectMallCustomerShopVo"/>
+        <where>  
+            <if test="customerId != null "> and customer_id = #{customerId}</if>
+            <if test="shopNo != null "> and shop_no = #{shopNo}</if>
+            <if test="shopValue != null "> and shop_value = #{shopValue}</if>
+            <if test="shopBalance != null "> and shop_balance = #{shopBalance}</if>
+            <if test="startUseTime != null "> and start_use_time = #{startUseTime}</if>
+            <if test="endUseTime != null "> and end_use_time = #{endUseTime}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectMallCustomerShopById" parameterType="Long" resultMap="MallCustomerShopResult">
+        <include refid="selectMallCustomerShopVo"/>
+        where shop_id = #{shopId}
+    </select>
+        
+    <insert id="insertMallCustomerShop" parameterType="MallCustomerShop">
+        insert into mall_customer_shop
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="shopId != null">shop_id,</if>
+            <if test="customerId != null">customer_id,</if>
+            <if test="shopNo != null">shop_no,</if>
+            <if test="shopValue != null">shop_value,</if>
+            <if test="shopBalance != null">shop_balance,</if>
+            <if test="startUseTime != null">start_use_time,</if>
+            <if test="endUseTime != null">end_use_time,</if>
+            <if test="status != null">status,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="shopId != null">#{shopId},</if>
+            <if test="customerId != null">#{customerId},</if>
+            <if test="shopNo != null">#{shopNo},</if>
+            <if test="shopValue != null">#{shopValue},</if>
+            <if test="shopBalance != null">#{shopBalance},</if>
+            <if test="startUseTime != null">#{startUseTime},</if>
+            <if test="endUseTime != null">#{endUseTime},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMallCustomerShop" parameterType="MallCustomerShop">
+        update mall_customer_shop
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="customerId != null">customer_id = #{customerId},</if>
+            <if test="shopNo != null">shop_no = #{shopNo},</if>
+            <if test="shopValue != null">shop_value = #{shopValue},</if>
+            <if test="shopBalance != null">shop_balance = #{shopBalance},</if>
+            <if test="startUseTime != null">start_use_time = #{startUseTime},</if>
+            <if test="endUseTime != null">end_use_time = #{endUseTime},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where shop_id = #{shopId}
+    </update>
+
+    <delete id="deleteMallCustomerShopById" parameterType="Long">
+        delete from mall_customer_shop where shop_id = #{shopId}
+    </delete>
+
+    <delete id="deleteMallCustomerShopByIds" parameterType="String">
+        delete from mall_customer_shop where shop_id in 
+        <foreach item="shopId" collection="array" open="(" separator="," close=")">
+            #{shopId}
+        </foreach>
+    </delete>
+</mapper>

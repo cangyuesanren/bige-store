@@ -1,46 +1,72 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="品类名" prop="categoryName">
+      <el-form-item label="微信唯一标识" prop="openidId">
         <el-input
-          v-model="queryParams.categoryName"
-          placeholder="请输入品类名"
+          v-model="queryParams.openidId"
+          placeholder="请输入微信唯一标识"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-
-      <!--<el-form-item label="父级ID" prop="parentId">
+      <el-form-item label="头像" prop="portraitImg">
         <el-input
-          v-model="queryParams.parentId"
-          placeholder="请输入父级ID"
+          v-model="queryParams.portraitImg"
+          placeholder="请输入头像"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
-      </el-form-item>-->
-      <el-form-item label="类型" prop="categoryType">
-        <el-select v-model="queryParams.categoryType" placeholder="请选择类型" clearable size="small">
-          <el-option label="一级" value="1" />
-          <el-option label="二级" value="2" />
-          <el-option label="三级" value="3" />
+      </el-form-item>
+      <el-form-item label="电话号码" prop="phone">
+        <el-input
+          v-model="queryParams.phone"
+          placeholder="请输入电话号码"
+          clearable
+          size="small"
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="昵称" prop="nickName">
+        <el-input
+          v-model="queryParams.nickName"
+          placeholder="请输入昵称"
+          clearable
+          size="small"
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="性别" prop="sex">
+        <el-select v-model="queryParams.sex" placeholder="请选择性别" clearable size="small">
+          <el-option label="请选择字典生成" value="" />
         </el-select>
       </el-form-item>
-      <el-form-item label="排序" prop="sort">
+      <el-form-item label="用户类型" prop="customerType">
+        <el-select v-model="queryParams.customerType" placeholder="请选择用户类型" clearable size="small">
+          <el-option label="请选择字典生成" value="" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="邮箱" prop="email">
         <el-input
-          v-model="queryParams.sort"
-          placeholder="请输入排序"
+          v-model="queryParams.email"
+          placeholder="请输入邮箱"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-
+      <el-form-item label="最后登录时间" prop="lastLoginTime">
+        <el-date-picker clearable size="small"
+          v-model="queryParams.lastLoginTime"
+          type="date"
+          value-format="yyyy-MM-dd"
+          placeholder="选择最后登录时间">
+        </el-date-picker>
+      </el-form-item>
       <el-form-item label="状态" prop="status">
         <el-select v-model="queryParams.status" placeholder="请选择状态" clearable size="small">
-          <el-option label="正常" value="1" />
-          <el-option label="禁用" value="0" />
+          <el-option label="请选择字典生成" value="" />
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -57,7 +83,7 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['mall:category:add']"
+          v-hasPermi="['mall:customer:add']"
         >新增</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -68,7 +94,7 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['mall:category:edit']"
+          v-hasPermi="['mall:customer:edit']"
         >修改</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -79,7 +105,7 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['mall:category:remove']"
+          v-hasPermi="['mall:customer:remove']"
         >删除</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -89,38 +115,28 @@
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-          v-hasPermi="['mall:category:export']"
+          v-hasPermi="['mall:customer:export']"
         >导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="categoryList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="customerList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <!--<el-table-column label="品类ID" align="center" prop="categoryId" />-->
-      <el-table-column label="品类级别" align="center" prop="categoryType" >
-        <template slot-scope="scope" >
-          {{scope.row.categoryType==1?"一级":scope.row.categoryType==2?"二级":scope.row.categoryType==3?"三级":"-"}}
-        </template>
-      </el-table-column>
-      <el-table-column label="品类名" align="center" prop="categoryName" />
-      <el-table-column label="品类图片" align="center" prop="categoryImg" >
-        <template slot-scope="scope" >
-          <el-image
-            style="width: 40px"
-            :src="scope.row.categoryImg"
-            :preview-src-list="[scope.row.categoryImg]"
-          ></el-image>
-        </template>
-      </el-table-column>
-      <el-table-column label="父级ID" align="center" prop="parentId" />
-      <el-table-column label="排序" align="center" prop="sort" />
-      <!--<el-table-column label="佣金比例" align="center" prop="chargeRate" />-->
-      <el-table-column label="状态" align="center" prop="status" >
+      <el-table-column label="用户Id" align="center" prop="customerId" />
+      <el-table-column label="微信唯一标识" align="center" prop="openidId" />
+      <el-table-column label="头像" align="center" prop="portraitImg" />
+      <el-table-column label="电话号码" align="center" prop="phone" />
+      <el-table-column label="昵称" align="center" prop="nickName" />
+      <el-table-column label="性别" align="center" prop="sex" />
+      <el-table-column label="用户类型" align="center" prop="customerType" />
+      <el-table-column label="邮箱" align="center" prop="email" />
+      <el-table-column label="最后登录时间" align="center" prop="lastLoginTime" width="180">
         <template slot-scope="scope">
-          {{scope.row.status==1?"正常":"禁用"}}
+          <span>{{ parseTime(scope.row.lastLoginTime, '{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column>
+      <el-table-column label="状态" align="center" prop="status" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -128,19 +144,19 @@
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-            v-hasPermi="['mall:category:edit']"
+            v-hasPermi="['mall:customer:edit']"
           >修改</el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-            v-hasPermi="['mall:category:remove']"
+            v-hasPermi="['mall:customer:remove']"
           >删除</el-button>
         </template>
       </el-table-column>
     </el-table>
-
+    
     <pagination
       v-show="total>0"
       :total="total"
@@ -149,40 +165,45 @@
       @pagination="getList"
     />
 
-    <!-- 添加或修改品类信息对话框 -->
+    <!-- 添加或修改前端客户对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="品类级别" prop="categoryType">
-          <el-select v-model="form.categoryType" @change="changeType" placeholder="请选择类型">
-            <el-option label="一级" value="1" />
-            <el-option label="二级" value="2" />
-            <el-option label="三级" value="3" />
+        <el-form-item label="微信唯一标识" prop="openidId">
+          <el-input v-model="form.openidId" placeholder="请输入微信唯一标识" />
+        </el-form-item>
+        <el-form-item label="头像" prop="portraitImg">
+          <el-input v-model="form.portraitImg" placeholder="请输入头像" />
+        </el-form-item>
+        <el-form-item label="电话号码" prop="phone">
+          <el-input v-model="form.phone" placeholder="请输入电话号码" />
+        </el-form-item>
+        <el-form-item label="昵称" prop="nickName">
+          <el-input v-model="form.nickName" placeholder="请输入昵称" />
+        </el-form-item>
+        <el-form-item label="性别" prop="sex">
+          <el-select v-model="form.sex" placeholder="请选择性别">
+            <el-option label="请选择字典生成" value="" />
           </el-select>
         </el-form-item>
-        <el-form-item label="父级ID" prop="parentId">
-         <!-- <el-input v-model="form.parentId"  placeholder="请输入父级ID" />-->
-          <el-select v-model="form.parentId" placeholder="请选择类型">
-            <el-option :label="item.categoryName" :value="item.categoryId" v-for="(item,index) in fatherList" :key="index" />
+        <el-form-item label="用户类型" prop="customerType">
+          <el-select v-model="form.customerType" placeholder="请选择用户类型">
+            <el-option label="请选择字典生成" value="" />
           </el-select>
         </el-form-item>
-        <el-form-item label="品类名" prop="categoryName">
-          <el-input v-model="form.categoryName" placeholder="请输入品类名" />
+        <el-form-item label="邮箱" prop="email">
+          <el-input v-model="form.email" placeholder="请输入邮箱" />
         </el-form-item>
-        <el-form-item label="品类图片" prop="categoryImg">
-          <img-upload v-model="form.categoryImg" class="sku_upload"></img-upload>
+        <el-form-item label="最后登录时间" prop="lastLoginTime">
+          <el-date-picker clearable size="small"
+            v-model="form.lastLoginTime"
+            type="date"
+            value-format="yyyy-MM-dd"
+            placeholder="选择最后登录时间">
+          </el-date-picker>
         </el-form-item>
-
-
-        <el-form-item label="排序" prop="sort">
-          <el-input v-model="form.sort" type="number" placeholder="请输入排序" />
-        </el-form-item>
-        <!--<el-form-item label="佣金比例" prop="chargeRate">
-          <el-input v-model="form.chargeRate" placeholder="请输入佣金比例" />
-        </el-form-item>-->
         <el-form-item label="状态">
           <el-radio-group v-model="form.status">
-            <el-radio label="1">正常</el-radio>
-            <el-radio label="0">禁用</el-radio>
+            <el-radio label="1">请选择字典生成</el-radio>
           </el-radio-group>
         </el-form-item>
       </el-form>
@@ -195,13 +216,11 @@
 </template>
 
 <script>
-import { listCategory, getCategory, delCategory, addCategory, updateCategory, exportCategory } from "@/api/mall/category";
-import imgUpload from "@/components/upload/imgUpload";
+import { listCustomer, getCustomer, delCustomer, addCustomer, updateCustomer, exportCustomer } from "@/api/mall/customer";
 
 export default {
-  name: "Category",
+  name: "Customer",
   components: {
-    imgUpload
   },
   data() {
     return {
@@ -217,10 +236,8 @@ export default {
       showSearch: true,
       // 总条数
       total: 0,
-      // 品类信息表格数据
-      categoryList: [],
-
-      fatherList: [],       //待选父级品类
+      // 前端客户表格数据
+      customerList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -229,12 +246,14 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        categoryName: null,
-        categoryImg: null,
-        parentId: null,
-        categoryType: null,
-        sort: null,
-        chargeRate: null,
+        openidId: null,
+        portraitImg: null,
+        phone: null,
+        nickName: null,
+        sex: null,
+        customerType: null,
+        email: null,
+        lastLoginTime: null,
         status: null,
       },
       // 表单参数
@@ -246,37 +265,16 @@ export default {
   },
   created() {
     this.getList();
-
   },
   methods: {
-    /** 查询品类信息列表 */
+    /** 查询前端客户列表 */
     getList() {
       this.loading = true;
-      listCategory(this.queryParams).then(response => {
-        this.categoryList = response.rows;
+      listCustomer(this.queryParams).then(response => {
+        this.customerList = response.rows;
         this.total = response.total;
         this.loading = false;
       });
-    },
-
-    getFatherListList(){
-      if (this.form.categoryType == 1){
-        this.fatherList = [{
-          categoryName: "0(0表示无父级)",categoryId:"0",
-        }]
-      }else {
-        listCategory({parentId:this.form.parentId}).then(response => {
-          this.fatherList = response.rows
-          for (let item of this.fatherList){
-            if(this.form.categoryType == 2){
-              item.categoryName = item.categoryName + "(一级)"
-            }else {
-              item.categoryName = item.categoryName + "(二级)"
-            }
-          }
-        })
-      }
-
     },
     // 取消按钮
     cancel() {
@@ -286,20 +284,19 @@ export default {
     // 表单重置
     reset() {
       this.form = {
-        categoryId: null,
-        categoryName: null,
-        categoryImg: null,
-        parentId: "0",
-        categoryType: "1",
-        sort: null,
-        chargeRate: null,
-        status: "1",
+        customerId: null,
+        openidId: null,
+        portraitImg: null,
+        phone: null,
+        nickName: null,
+        sex: null,
+        customerType: null,
+        email: null,
+        lastLoginTime: null,
+        status: "0",
         createTime: null,
-        createBy: null,
-        updateTime: null,
-        updateBy: null
+        updateTime: null
       };
-
       this.resetForm("form");
     },
     /** 搜索按钮操作 */
@@ -314,40 +311,38 @@ export default {
     },
     // 多选框选中数据
     handleSelectionChange(selection) {
-      this.ids = selection.map(item => item.categoryId)
+      this.ids = selection.map(item => item.customerId)
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
     /** 新增按钮操作 */
     handleAdd() {
       this.reset();
-      this.getFatherListList();
       this.open = true;
-      this.title = "添加品类信息";
+      this.title = "添加前端客户";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
-      const categoryId = row.categoryId || this.ids
-      getCategory(categoryId).then(response => {
+      const customerId = row.customerId || this.ids
+      getCustomer(customerId).then(response => {
         this.form = response.data;
-        this.getFatherListList();
         this.open = true;
-        this.title = "修改品类信息";
+        this.title = "修改前端客户";
       });
     },
     /** 提交按钮 */
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.categoryId != null) {
-            updateCategory(this.form).then(response => {
+          if (this.form.customerId != null) {
+            updateCustomer(this.form).then(response => {
               this.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
-            addCategory(this.form).then(response => {
+            addCustomer(this.form).then(response => {
               this.msgSuccess("新增成功");
               this.open = false;
               this.getList();
@@ -358,13 +353,13 @@ export default {
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      const categoryIds = row.categoryId || this.ids;
-      this.$confirm('是否确认删除品类信息编号为"' + categoryIds + '"的数据项?', "警告", {
+      const customerIds = row.customerId || this.ids;
+      this.$confirm('是否确认删除前端客户编号为"' + customerIds + '"的数据项?', "警告", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning"
         }).then(function() {
-          return delCategory(categoryIds);
+          return delCustomer(customerIds);
         }).then(() => {
           this.getList();
           this.msgSuccess("删除成功");
@@ -373,25 +368,16 @@ export default {
     /** 导出按钮操作 */
     handleExport() {
       const queryParams = this.queryParams;
-      this.$confirm('是否确认导出所有品类信息数据项?', "警告", {
+      this.$confirm('是否确认导出所有前端客户数据项?', "警告", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning"
         }).then(function() {
-          return exportCategory(queryParams);
+          return exportCustomer(queryParams);
         }).then(response => {
           this.download(response.msg);
         })
-    },
-    changeType(){     //更改品类级别
-      console.log(this.form);
-      if (this.form.categoryType == 1){
-        this.form.parentId = "0";
-      }else {
-        this.form.parentId = null;
-      }
-      this.getFatherListList()
-    },
+    }
   }
 };
 </script>

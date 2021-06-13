@@ -10,37 +10,10 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="轮播图" prop="bannerImg">
-        <el-input
-          v-model="queryParams.bannerImg"
-          placeholder="请输入轮播图"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="跳转链接" prop="linkUrl">
-        <el-input
-          v-model="queryParams.linkUrl"
-          placeholder="请输入跳转链接"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
       <el-form-item label="跳转类型" prop="type">
         <el-select v-model="queryParams.type" placeholder="请选择跳转类型" clearable size="small">
           <el-option label="请选择字典生成" value="" />
         </el-select>
-      </el-form-item>
-      <el-form-item label="排序" prop="sort">
-        <el-input
-          v-model="queryParams.sort"
-          placeholder="请输入排序"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -96,9 +69,21 @@
 
     <el-table v-loading="loading" :data="bannerList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="轮播Id" align="center" prop="bannerId" />
+      <el-table-column label="轮播Id" align="center" prop="bannerId" >
+        <template slot-scope="scope">
+          {{ scope.$index + 1 +(queryParams.pageNum-1)*queryParams.pageSize}}
+        </template>
+      </el-table-column>
       <el-table-column label="名称" align="center" prop="bannerName" />
-      <el-table-column label="轮播图" align="center" prop="bannerImg" />
+      <el-table-column label="轮播图" align="center" prop="bannerImg" >
+        <template slot-scope="scope" >
+          <el-image
+            style="width: 40px"
+            :src="scope.row.bannerImg"
+            :preview-src-list="[scope.row.bannerImg]"
+          ></el-image>
+        </template>
+      </el-table-column>
       <el-table-column label="跳转链接" align="center" prop="linkUrl" />
       <el-table-column label="跳转类型" align="center" prop="type" />
       <el-table-column label="排序" align="center" prop="sort" />
@@ -121,7 +106,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -137,7 +122,8 @@
           <el-input v-model="form.bannerName" placeholder="请输入名称" />
         </el-form-item>
         <el-form-item label="轮播图" prop="bannerImg">
-          <el-input v-model="form.bannerImg" placeholder="请输入轮播图" />
+          <!--<el-input v-model="form.bannerImg" placeholder="请输入轮播图" />-->
+          <img-upload v-model="form.bannerImg" class="sku_upload"></img-upload>
         </el-form-item>
         <el-form-item label="跳转链接" prop="linkUrl">
           <el-input v-model="form.linkUrl" placeholder="请输入跳转链接" />
@@ -162,9 +148,11 @@
 <script>
 import { listBanner, getBanner, delBanner, addBanner, updateBanner, exportBanner } from "@/api/mall/banner";
 
+import imgUpload from "@/components/upload/imgUpload";
 export default {
   name: "Banner",
   components: {
+    imgUpload
   },
   data() {
     return {
@@ -228,7 +216,7 @@ export default {
         bannerName: null,
         bannerImg: null,
         linkUrl: null,
-        type: null,
+        type: "0",
         sort: null,
         createTime: null,
         updateBy: null,

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bige.system.mapper.MallShopCardMapper">
+    
+    <resultMap type="MallShopCard" id="MallShopCardResult">
+        <result property="shopId"    column="shop_id"    />
+        <result property="batchNo"    column="batch_no"    />
+        <result property="shopNo"    column="shop_no"    />
+        <result property="shopValue"    column="shop_value"    />
+        <result property="cardImg"    column="card_img"    />
+        <result property="startExchangeTime"    column="start_exchange_time"    />
+        <result property="endExchangeTime"    column="end_exchange_time"    />
+        <result property="startUseTime"    column="start_use_time"    />
+        <result property="endUseTime"    column="end_use_time"    />
+        <result property="status"    column="status"    />
+        <result property="totalNum"    column="total_num"    />
+        <result property="shopNum"    column="shop_num"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectMallShopCardVo">
+        select shop_id, batch_no, shop_no, shop_value, card_img, start_exchange_time, end_exchange_time, start_use_time, end_use_time, status, total_num, shop_num, create_time from mall_shop_card
+    </sql>
+
+    <select id="selectMallShopCardList" parameterType="MallShopCard" resultMap="MallShopCardResult">
+        <include refid="selectMallShopCardVo"/>
+        <where>  
+            <if test="batchNo != null  and batchNo != ''"> and batch_no = #{batchNo}</if>
+            <if test="shopNo != null  and shopNo != ''"> and shop_no = #{shopNo}</if>
+            <if test="shopValue != null "> and shop_value = #{shopValue}</if>
+            <if test="cardImg != null  and cardImg != ''"> and card_img = #{cardImg}</if>
+            <if test="startExchangeTime != null "> and start_exchange_time = #{startExchangeTime}</if>
+            <if test="endExchangeTime != null "> and end_exchange_time = #{endExchangeTime}</if>
+            <if test="startUseTime != null "> and start_use_time = #{startUseTime}</if>
+            <if test="endUseTime != null "> and end_use_time = #{endUseTime}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="totalNum != null "> and total_num = #{totalNum}</if>
+            <if test="shopNum != null "> and shop_num = #{shopNum}</if>
+        </where>
+    </select>
+    
+    <select id="selectMallShopCardById" parameterType="Long" resultMap="MallShopCardResult">
+        <include refid="selectMallShopCardVo"/>
+        where shop_id = #{shopId}
+    </select>
+        
+    <insert id="insertMallShopCard" parameterType="MallShopCard">
+        insert into mall_shop_card
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="shopId != null">shop_id,</if>
+            <if test="batchNo != null">batch_no,</if>
+            <if test="shopNo != null">shop_no,</if>
+            <if test="shopValue != null">shop_value,</if>
+            <if test="cardImg != null">card_img,</if>
+            <if test="startExchangeTime != null">start_exchange_time,</if>
+            <if test="endExchangeTime != null">end_exchange_time,</if>
+            <if test="startUseTime != null">start_use_time,</if>
+            <if test="endUseTime != null">end_use_time,</if>
+            <if test="status != null">status,</if>
+            <if test="totalNum != null">total_num,</if>
+            <if test="shopNum != null">shop_num,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="shopId != null">#{shopId},</if>
+            <if test="batchNo != null">#{batchNo},</if>
+            <if test="shopNo != null">#{shopNo},</if>
+            <if test="shopValue != null">#{shopValue},</if>
+            <if test="cardImg != null">#{cardImg},</if>
+            <if test="startExchangeTime != null">#{startExchangeTime},</if>
+            <if test="endExchangeTime != null">#{endExchangeTime},</if>
+            <if test="startUseTime != null">#{startUseTime},</if>
+            <if test="endUseTime != null">#{endUseTime},</if>
+            <if test="status != null">#{status},</if>
+            <if test="totalNum != null">#{totalNum},</if>
+            <if test="shopNum != null">#{shopNum},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMallShopCard" parameterType="MallShopCard">
+        update mall_shop_card
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="batchNo != null">batch_no = #{batchNo},</if>
+            <if test="shopNo != null">shop_no = #{shopNo},</if>
+            <if test="shopValue != null">shop_value = #{shopValue},</if>
+            <if test="cardImg != null">card_img = #{cardImg},</if>
+            <if test="startExchangeTime != null">start_exchange_time = #{startExchangeTime},</if>
+            <if test="endExchangeTime != null">end_exchange_time = #{endExchangeTime},</if>
+            <if test="startUseTime != null">start_use_time = #{startUseTime},</if>
+            <if test="endUseTime != null">end_use_time = #{endUseTime},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="totalNum != null">total_num = #{totalNum},</if>
+            <if test="shopNum != null">shop_num = #{shopNum},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where shop_id = #{shopId}
+    </update>
+
+    <delete id="deleteMallShopCardById" parameterType="Long">
+        delete from mall_shop_card where shop_id = #{shopId}
+    </delete>
+
+    <delete id="deleteMallShopCardByIds" parameterType="String">
+        delete from mall_shop_card where shop_id in 
+        <foreach item="shopId" collection="array" open="(" separator="," close=")">
+            #{shopId}
+        </foreach>
+    </delete>
+</mapper>

@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 13/06/2021 15:09:39
+ Date: 13/06/2021 17:07:05
 */
 
 SET NAMES utf8mb4;
@@ -43,19 +43,15 @@ CREATE TABLE `gen_table`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`table_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 56 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 71 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of gen_table
 -- ----------------------------
-INSERT INTO `gen_table` VALUES (57, 'mall_banner', '轮播图', NULL, NULL, 'MallBanner', 'crud', 'com.bige.system', 'mall', 'banner', '轮播图', 'bige', '0', '/', '{\"parentMenuId\":2027}', 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:25', NULL);
-INSERT INTO `gen_table` VALUES (58, 'mall_goods', '商品sku', NULL, NULL, 'MallGoods', 'crud', 'com.bige.system', 'mall', 'goods', '商品sku', 'bige', '0', '/', '{\"parentMenuId\":2000}', 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:46', NULL);
-INSERT INTO `gen_table` VALUES (59, 'mall_order', '商品订单', NULL, NULL, 'MallOrder', 'crud', 'com.bige.system', 'mall', 'order', '商品订单', 'bige', '0', '/', '{\"parentMenuId\":2026}', 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19', NULL);
-INSERT INTO `gen_table` VALUES (60, 'mall_order_item', '订单子单', NULL, NULL, 'MallOrderItem', 'crud', 'com.bige.system', 'mall', 'item', '订单子单', 'bige', '0', '/', '{\"parentMenuId\":2026}', 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35', NULL);
-INSERT INTO `gen_table` VALUES (61, 'mall_product', '商品', NULL, NULL, 'MallProduct', 'crud', 'com.bige.system', 'mall', 'product', '商品', 'bige', '0', '/', '{\"parentMenuId\":2000}', 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58', NULL);
-INSERT INTO `gen_table` VALUES (62, 'mall_product_imgs', '商品图', NULL, NULL, 'MallProductImgs', 'crud', 'com.bige.system', 'mall', 'imgs', '商品图', 'bige', '0', '/', '{\"parentMenuId\":2000}', 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:18', NULL);
-INSERT INTO `gen_table` VALUES (63, 'mall_product_standard', '商品规格', NULL, NULL, 'MallProductStandard', 'crud', 'com.bige.system', 'mall', 'standard', '商品规格', 'bige', '0', '/', '{\"parentMenuId\":2000}', 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:41', NULL);
-INSERT INTO `gen_table` VALUES (64, 'mall_standard', '预设规格', NULL, NULL, 'MallStandard', 'crud', 'com.bige.system', 'mall', 'standard', '预设规格', 'bige', '0', '/', '{\"parentMenuId\":2000}', 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:59', NULL);
+INSERT INTO `gen_table` VALUES (67, 'mall_customer_shop', '客户购物金', NULL, NULL, 'MallCustomerShop', 'crud', 'com.bige.system', 'mall', 'shop', '客户购物金', 'bige', '0', '/', '{\"parentMenuId\":2025}', 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:01', NULL);
+INSERT INTO `gen_table` VALUES (68, 'mall_shop_card', '购物卡', NULL, NULL, 'MallShopCard', 'crud', 'com.bige.system', 'mall', 'card', '购物卡', 'bige', '0', '/', '{\"parentMenuId\":2025}', 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:48', NULL);
+INSERT INTO `gen_table` VALUES (69, 'mall_cart', '购物车', NULL, NULL, 'MallCart', 'crud', 'com.bige.system', 'mall', 'cart', '购物车', 'bige', '0', '/', '{\"parentMenuId\":2025}', 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:09', NULL);
+INSERT INTO `gen_table` VALUES (70, 'mall_customer', '前端客户', NULL, NULL, 'MallCustomer', 'crud', 'com.bige.system', 'mall', 'customer', '前端客户', 'bige', '0', '/', '{\"parentMenuId\":2025}', 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:25', NULL);
 
 -- ----------------------------
 -- Table structure for gen_table_column
@@ -85,136 +81,64 @@ CREATE TABLE `gen_table_column`  (
   `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`column_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 398 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 593 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of gen_table_column
 -- ----------------------------
-INSERT INTO `gen_table_column` VALUES (405, '57', 'banner_id', '轮播Id', 'int', 'Long', 'bannerId', '1', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:25');
-INSERT INTO `gen_table_column` VALUES (406, '57', 'banner_name', '名称', 'varchar(40)', 'String', 'bannerName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 2, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:25');
-INSERT INTO `gen_table_column` VALUES (407, '57', 'banner_img', '轮播图', 'varchar(255)', 'String', 'bannerImg', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:25');
-INSERT INTO `gen_table_column` VALUES (408, '57', 'link_url', '跳转链接', 'varchar(100)', 'String', 'linkUrl', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:25');
-INSERT INTO `gen_table_column` VALUES (409, '57', 'type', '跳转类型', 'int', 'Long', 'type', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'select', '', 5, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:25');
-INSERT INTO `gen_table_column` VALUES (410, '57', 'sort', '排序', 'int', 'Long', 'sort', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 6, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:25');
-INSERT INTO `gen_table_column` VALUES (411, '57', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 7, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:25');
-INSERT INTO `gen_table_column` VALUES (412, '57', 'update_by', '创建者', 'varchar(20)', 'String', 'updateBy', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'input', '', 8, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:25');
-INSERT INTO `gen_table_column` VALUES (413, '57', 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', '', 9, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:25');
-INSERT INTO `gen_table_column` VALUES (414, '58', 'goods_id', 'skuId', 'int', 'Long', 'goodsId', '1', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:46');
-INSERT INTO `gen_table_column` VALUES (415, '58', 'product_id', '商品Id', 'int', 'Long', 'productId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:46');
-INSERT INTO `gen_table_column` VALUES (416, '58', 'goods_name', '商品规格名', 'varchar(80)', 'String', 'goodsName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 3, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:46');
-INSERT INTO `gen_table_column` VALUES (417, '58', 'goods_img', '规格图', 'varchar(255)', 'String', 'goodsImg', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:46');
-INSERT INTO `gen_table_column` VALUES (418, '58', 'sale_price', '销售价', 'decimal(10,2)', 'BigDecimal', 'salePrice', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:46');
-INSERT INTO `gen_table_column` VALUES (419, '58', 'cost_price', '成本价', 'decimal(10,2)', 'BigDecimal', 'costPrice', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 6, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:46');
-INSERT INTO `gen_table_column` VALUES (420, '58', 'line_price', '划线价', 'decimal(10,2)', 'BigDecimal', 'linePrice', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 7, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:46');
-INSERT INTO `gen_table_column` VALUES (421, '58', 'sale_num', '规格销量', 'int', 'Long', 'saleNum', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 8, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:46');
-INSERT INTO `gen_table_column` VALUES (422, '58', 'total_num', '总库存', 'int', 'Long', 'totalNum', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 9, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:46');
-INSERT INTO `gen_table_column` VALUES (423, '58', 'stock_locked', '库存锁定', 'int', 'Long', 'stockLocked', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 10, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:46');
-INSERT INTO `gen_table_column` VALUES (424, '58', 'weight', '重量', 'double(8,2)', 'BigDecimal', 'weight', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 11, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:46');
-INSERT INTO `gen_table_column` VALUES (425, '58', 'volum', '体积', 'double(8,2)', 'BigDecimal', 'volum', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 12, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:46');
-INSERT INTO `gen_table_column` VALUES (426, '58', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 13, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:46');
-INSERT INTO `gen_table_column` VALUES (427, '58', 'create_by', '创建者', 'varchar(20)', 'String', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 14, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:46');
-INSERT INTO `gen_table_column` VALUES (428, '58', 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', '', 15, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:41:46');
-INSERT INTO `gen_table_column` VALUES (429, '59', 'order_id', '订单Id', 'int', 'Long', 'orderId', '1', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (430, '59', 'order_name', '订单名', 'varchar(20)', 'String', 'orderName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 2, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (431, '59', 'order_no', '订单编号', 'varchar(30)', 'String', 'orderNo', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (432, '59', 'pay_order_no', '支付订单号', 'varchar(30)', 'String', 'payOrderNo', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (433, '59', 'customer_id', '客户', 'int', 'Long', 'customerId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (434, '59', 'order_total_money', '订单总金额', 'decimal(10,2)', 'BigDecimal', 'orderTotalMoney', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 6, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (435, '59', 'shop_money', '购物金', 'decimal(10,2)', 'BigDecimal', 'shopMoney', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 7, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (436, '59', 'pre_money', '优惠金', 'decimal(10,2)', 'BigDecimal', 'preMoney', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 8, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (437, '59', 'pay_product_money', '商品应付金额', 'decimal(10,2)', 'BigDecimal', 'payProductMoney', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 9, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (438, '59', 'coupon_money', '优惠券金', 'decimal(10,2)', 'BigDecimal', 'couponMoney', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 10, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (439, '59', 'pay_money', '实付金额', 'decimal(10,2)', 'BigDecimal', 'payMoney', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 11, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (440, '59', 'buyer_name', '收货人', 'varchar(40)', 'String', 'buyerName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 12, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (441, '59', 'buyer_phone', '联系电话', 'varchar(20)', 'String', 'buyerPhone', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 13, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (442, '59', 'buyer_address', '收货地址', 'varchar(150)', 'String', 'buyerAddress', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 14, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (443, '59', 'status', '状态（ 0:待付款 1：待发货，2：待收货，3：已完成，4，退货/售后，5：用户取消支付 6：超时取消支付 )', 'char(1)', 'String', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 15, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (444, '59', 'ac_status', '活动状态（0：普通单，1：年会商品订单）', 'char(1)', 'String', 'acStatus', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 16, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (445, '59', 'pay_status', '支付状态：0:未支付，1：已支付', 'char(1)', 'String', 'payStatus', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 17, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (446, '59', 'postage_price', '邮费', 'decimal(10,2)', 'BigDecimal', 'postagePrice', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 18, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (447, '59', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 19, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (448, '59', 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', '', 20, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:19');
-INSERT INTO `gen_table_column` VALUES (449, '60', 'order_item_id', '订单子单ID', 'int', 'Long', 'orderItemId', '1', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (450, '60', 'order_item_no', '订单子单编号', 'varchar(30)', 'String', 'orderItemNo', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (451, '60', 'order_id', '订单ID', 'int', 'Long', 'orderId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (452, '60', 'pay_order_no', '支付单号', 'varchar(30)', 'String', 'payOrderNo', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (453, '60', 'customer_id', '客户', 'int', 'Long', 'customerId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (454, '60', 'product_id', '商品', 'int', 'Long', 'productId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 6, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (455, '60', 'goods_id', '规格Id', 'int', 'Long', 'goodsId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 7, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (456, '60', 'first_category_id', '一级品类', 'int', 'Long', 'firstCategoryId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 8, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (457, '60', 'second_category_id', '二级品类', 'int', 'Long', 'secondCategoryId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 9, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (458, '60', 'third_category_id', '三级品类', 'int', 'Long', 'thirdCategoryId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 10, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (459, '60', 'product_name', '商品名称', 'varchar(80)', 'String', 'productName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 11, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (460, '60', 'product_img', '商品图', 'varchar(255)', 'String', 'productImg', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 12, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (461, '60', 'cost_price', '成本价', 'decimal(10,2)', 'BigDecimal', 'costPrice', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 13, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (462, '60', 'sale_price', '售价', 'decimal(10,2)', 'BigDecimal', 'salePrice', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 14, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (463, '60', 'buy_num', '购买数量', 'int', 'Long', 'buyNum', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 15, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (464, '60', 'order_total_money', '订单总结', 'decimal(10,2)', 'BigDecimal', 'orderTotalMoney', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 16, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (465, '60', 'pre_money', '优惠金额', 'decimal(10,2)', 'BigDecimal', 'preMoney', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 17, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (466, '60', 'pay_product_money', '商品总价', 'decimal(10,2)', 'BigDecimal', 'payProductMoney', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 18, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (467, '60', 'coupon_money', '优惠券金', 'decimal(10,2)', 'BigDecimal', 'couponMoney', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 19, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (468, '60', 'pay_money', '实付金额', 'decimal(10,2)', 'BigDecimal', 'payMoney', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 20, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (469, '60', 'shop_money', '购物金', 'decimal(10,2)', 'BigDecimal', 'shopMoney', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 21, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (470, '60', 'goods_attr', '商品规格', 'text', 'String', 'goodsAttr', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'textarea', '', 22, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (471, '60', 'sku_code', '规格编码', 'varchar(30)', 'String', 'skuCode', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 23, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (472, '60', 'comment_status', '评论状态', 'char(1)', 'String', 'commentStatus', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 24, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (473, '60', 'status', '状态（0：待付款 1未发货 2已发货 3已收货 4退货售后 ）', 'char(1)', 'String', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 25, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (474, '60', 'delivery_type', '发货方式 ( 0普通快递 1无需物流）', 'char(1)', 'String', 'deliveryType', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'select', '', 26, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (475, '60', 'postage_price', '邮费', 'decimal(10,2)', 'BigDecimal', 'postagePrice', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 27, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (476, '60', 'invoice_type', '发票类型（0：可开，1：不可开）', 'char(1)', 'String', 'invoiceType', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'select', '', 28, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (477, '60', 'invoice_status', '开票状态（0未开票 1：申请中，2已开票）', 'char(1)', 'String', 'invoiceStatus', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 29, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (478, '60', 'buyer_msg', '买家留言', 'varchar(100)', 'String', 'buyerMsg', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 30, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (479, '60', 'supplier_id', '供应商', 'int', 'Long', 'supplierId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 31, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (480, '60', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 32, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (481, '60', 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', '', 33, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:35');
-INSERT INTO `gen_table_column` VALUES (482, '61', 'product_id', '商品Id', 'int', 'Long', 'productId', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (483, '61', 'product_name', '商品名', 'varchar(80)', 'String', 'productName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 2, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (484, '61', 'first_img', '商品首图', 'varchar(40)', 'String', 'firstImg', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (485, '61', 'brand_id', '品牌', 'int', 'Long', 'brandId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (486, '61', 'label_id', '标签', 'int', 'Long', 'labelId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (487, '61', 'template_id', '邮费模板', 'int', 'Long', 'templateId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 6, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (488, '61', 'first_category_id', '一级品类', 'int', 'Long', 'firstCategoryId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 7, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (489, '61', 'second_category_id', '二级品类', 'int', 'Long', 'secondCategoryId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 8, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (490, '61', 'third_category_id', '三级品类', 'int', 'Long', 'thirdCategoryId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 9, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (491, '61', 'supplier_id', '供应商', 'int', 'Long', 'supplierId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 10, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (492, '61', 'sale_num', '真实销量', 'int', 'Long', 'saleNum', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 11, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (493, '61', 'virtual_num', '虚拟销量', 'int', 'Long', 'virtualNum', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 12, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (494, '61', 'product_video', '视频链接', 'varchar(255)', 'String', 'productVideo', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 13, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (495, '61', 'total_num', '库存', 'int', 'Long', 'totalNum', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 14, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (496, '61', 'sale_price', '商品价格', 'decimal(10,2)', 'BigDecimal', 'salePrice', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 15, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (497, '61', 'line_price', '划线价', 'decimal(10,2)', 'BigDecimal', 'linePrice', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 16, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (498, '61', 'origin', '发货地', 'varchar(100)', 'String', 'origin', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 17, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (499, '61', 'postage', '邮费类型 0:包邮，1：自费', 'char(1)', 'String', 'postage', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 18, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (500, '61', 'status', '状态 0上架 1下架', 'char(1)', 'String', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 19, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (501, '61', 'audit_status', '审核状态 0审核中 1通过 2不通过', 'char(1)', 'String', 'auditStatus', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'radio', '', 20, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (502, '61', 'invoice_status', '发票  0：可开，1：不可开', 'char(1)', 'String', 'invoiceStatus', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 21, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (503, '61', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 22, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (504, '61', 'create_by', '创建者', 'varchar(40)', 'String', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 23, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (505, '61', 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', '', 24, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (506, '61', 'details', '详情', 'text', 'String', 'details', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'textarea', '', 25, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:42:58');
-INSERT INTO `gen_table_column` VALUES (507, '62', 'product_img_id', '商品图Id', 'int', 'Long', 'productImgId', '1', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:18');
-INSERT INTO `gen_table_column` VALUES (508, '62', 'product_id', '商品', 'int', 'Long', 'productId', '0', '0', '1', '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:18');
-INSERT INTO `gen_table_column` VALUES (509, '62', 'product_img', '商品图', 'varchar(255)', 'String', 'productImg', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:18');
-INSERT INTO `gen_table_column` VALUES (510, '63', 'product_id', '商品Id', 'int', 'Long', 'productId', '1', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:41');
-INSERT INTO `gen_table_column` VALUES (511, '63', 'standard_name', '规格名', 'varchar(40)', 'String', 'standardName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 2, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:41');
-INSERT INTO `gen_table_column` VALUES (512, '63', 'standard_value', '规格值', 'text', 'String', 'standardValue', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'textarea', '', 3, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:41');
-INSERT INTO `gen_table_column` VALUES (513, '63', 'sort', '排序', 'int', 'Long', 'sort', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:41');
-INSERT INTO `gen_table_column` VALUES (514, '64', 'standard_id', '规格Id', 'int', 'Long', 'standardId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 1, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:59');
-INSERT INTO `gen_table_column` VALUES (515, '64', 'first_category_id', '一级品类', 'int', 'Long', 'firstCategoryId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:59');
-INSERT INTO `gen_table_column` VALUES (516, '64', 'second_category', '二级品类', 'int', 'Long', 'secondCategory', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:59');
-INSERT INTO `gen_table_column` VALUES (517, '64', 'third_category_id', '三级品类', 'int', 'Long', 'thirdCategoryId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:59');
-INSERT INTO `gen_table_column` VALUES (518, '64', 'standard_name', '规格名', 'varchar(20)', 'String', 'standardName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 5, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:59');
-INSERT INTO `gen_table_column` VALUES (519, '64', 'standard_', '规格值', 'text', 'String', 'standard', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'textarea', '', 6, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:59');
-INSERT INTO `gen_table_column` VALUES (520, '64', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 7, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:59');
-INSERT INTO `gen_table_column` VALUES (521, '64', 'create_by', '创建者', 'varchar(20)', 'String', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 8, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:59');
-INSERT INTO `gen_table_column` VALUES (522, '64', 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', '', 9, 'admin', '2021-06-13 01:32:29', '', '2021-06-13 01:43:59');
+INSERT INTO `gen_table_column` VALUES (547, '67', 'shop_id', '购物金Id', 'int', 'Long', 'shopId', '1', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:01');
+INSERT INTO `gen_table_column` VALUES (548, '67', 'customer_id', ' 用户', 'int', 'Long', 'customerId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:01');
+INSERT INTO `gen_table_column` VALUES (549, '67', 'shop_no', '购物卡编号', 'int', 'Long', 'shopNo', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:01');
+INSERT INTO `gen_table_column` VALUES (550, '67', 'shop_value', '面值', 'decimal(10,2)', 'BigDecimal', 'shopValue', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:01');
+INSERT INTO `gen_table_column` VALUES (551, '67', 'shop_balance', '余额', 'decimal(10,2)', 'BigDecimal', 'shopBalance', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:01');
+INSERT INTO `gen_table_column` VALUES (552, '67', 'start_use_time', '开始使用时间', 'datetime', 'Date', 'startUseTime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 6, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:01');
+INSERT INTO `gen_table_column` VALUES (553, '67', 'end_use_time', '过期时间', 'datetime', 'Date', 'endUseTime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 7, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:01');
+INSERT INTO `gen_table_column` VALUES (554, '67', 'status', '状态 ( 1正常 2已过期 3已用完 ）', 'char(1)', 'String', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 8, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:01');
+INSERT INTO `gen_table_column` VALUES (555, '67', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 9, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:01');
+INSERT INTO `gen_table_column` VALUES (556, '68', 'shop_id', '购物卡Id', 'int', 'Long', 'shopId', '1', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:48');
+INSERT INTO `gen_table_column` VALUES (557, '68', 'batch_no', '批次号', 'varchar(50)', 'String', 'batchNo', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:48');
+INSERT INTO `gen_table_column` VALUES (558, '68', 'shop_no', '兑换码', 'varchar(50)', 'String', 'shopNo', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:48');
+INSERT INTO `gen_table_column` VALUES (559, '68', 'shop_value', '面值', 'decimal(10,2)', 'BigDecimal', 'shopValue', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:48');
+INSERT INTO `gen_table_column` VALUES (560, '68', 'card_img', '卡背景图', 'varchar(50)', 'String', 'cardImg', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:48');
+INSERT INTO `gen_table_column` VALUES (561, '68', 'start_exchange_time', '开始兑换时间', 'datetime', 'Date', 'startExchangeTime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 6, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:48');
+INSERT INTO `gen_table_column` VALUES (562, '68', 'end_exchange_time', '结束兑换时间', 'datetime', 'Date', 'endExchangeTime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 7, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:48');
+INSERT INTO `gen_table_column` VALUES (563, '68', 'start_use_time', '开始使用时间', 'datetime', 'Date', 'startUseTime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 8, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:48');
+INSERT INTO `gen_table_column` VALUES (564, '68', 'end_use_time', '结束使用时间', 'datetime', 'Date', 'endUseTime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 9, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:48');
+INSERT INTO `gen_table_column` VALUES (565, '68', 'status', '状态 1：未开始， 2：待兑换 3：已过期', 'char(1)', 'String', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 10, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:48');
+INSERT INTO `gen_table_column` VALUES (566, '68', 'total_num', '发放数量', 'int', 'Long', 'totalNum', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 11, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:48');
+INSERT INTO `gen_table_column` VALUES (567, '68', 'shop_num', '剩余数量', 'int', 'Long', 'shopNum', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 12, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:48');
+INSERT INTO `gen_table_column` VALUES (568, '68', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 13, 'admin', '2021-06-13 15:33:27', '', '2021-06-13 15:36:48');
+INSERT INTO `gen_table_column` VALUES (569, '69', 'cart_id', '购物车ID', 'int', 'Long', 'cartId', '1', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:09');
+INSERT INTO `gen_table_column` VALUES (570, '69', 'customer_id', '客户', 'int', 'Long', 'customerId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:09');
+INSERT INTO `gen_table_column` VALUES (571, '69', 'goods_id', '规格Id', 'int', 'Long', 'goodsId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:09');
+INSERT INTO `gen_table_column` VALUES (572, '69', 'product_id', '商品Id', 'int', 'Long', 'productId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:09');
+INSERT INTO `gen_table_column` VALUES (573, '69', 'sale_price', '售价', 'decimal(10,2)', 'BigDecimal', 'salePrice', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:09');
+INSERT INTO `gen_table_column` VALUES (574, '69', 'standard_json', '规格Json', 'text', 'String', 'standardJson', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'textarea', '', 6, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:09');
+INSERT INTO `gen_table_column` VALUES (575, '69', 'product_name', '商品名', 'varchar(80)', 'String', 'productName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 7, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:09');
+INSERT INTO `gen_table_column` VALUES (576, '69', 'number', '数量', 'int', 'Long', 'number', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 8, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:09');
+INSERT INTO `gen_table_column` VALUES (577, '69', 'product_img', '商品图', 'varchar(50)', 'String', 'productImg', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 9, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:09');
+INSERT INTO `gen_table_column` VALUES (578, '69', 'buyer_msg', '买家留言', 'varchar(255)', 'String', 'buyerMsg', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 10, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:09');
+INSERT INTO `gen_table_column` VALUES (579, '69', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 11, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:09');
+INSERT INTO `gen_table_column` VALUES (580, '69', 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', '', 12, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:09');
+INSERT INTO `gen_table_column` VALUES (581, '70', 'customer_id', '用户Id', 'int', 'Long', 'customerId', '1', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:25');
+INSERT INTO `gen_table_column` VALUES (582, '70', 'openid_id', '微信唯一标识', 'int', 'Long', 'openidId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:25');
+INSERT INTO `gen_table_column` VALUES (583, '70', 'portrait_img', '头像', 'varchar(100)', 'String', 'portraitImg', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:25');
+INSERT INTO `gen_table_column` VALUES (584, '70', 'phone', '电话号码', 'varchar(20)', 'String', 'phone', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:25');
+INSERT INTO `gen_table_column` VALUES (585, '70', 'nick_name', '昵称', 'varchar(20)', 'String', 'nickName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 5, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:25');
+INSERT INTO `gen_table_column` VALUES (586, '70', 'sex', '性别（0：未知，1：男，2女）', 'char(1)', 'String', 'sex', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'select', '', 6, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:25');
+INSERT INTO `gen_table_column` VALUES (587, '70', 'customer_type', '用户类型（0：普通用户，1：会员用户）', 'char(1)', 'String', 'customerType', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'select', '', 7, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:25');
+INSERT INTO `gen_table_column` VALUES (588, '70', 'email', '邮箱', 'varchar(40)', 'String', 'email', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 8, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:25');
+INSERT INTO `gen_table_column` VALUES (589, '70', 'last_login_time', '最后登录时间', 'datetime', 'Date', 'lastLoginTime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 9, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:25');
+INSERT INTO `gen_table_column` VALUES (590, '70', 'status', '状态（0：启用，1：禁用）', 'char(1)', 'String', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 10, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:25');
+INSERT INTO `gen_table_column` VALUES (591, '70', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 11, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:25');
+INSERT INTO `gen_table_column` VALUES (592, '70', 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', '', 12, 'admin', '2021-06-13 15:34:20', '', '2021-06-13 15:37:25');
 
 -- ----------------------------
 -- Table structure for mall_banner
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_banner`;
 CREATE TABLE `mall_banner`  (
-  `banner_id` int NOT NULL COMMENT '轮播Id',
+  `banner_id` int NOT NULL AUTO_INCREMENT COMMENT '轮播Id',
   `banner_name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '名称',
   `banner_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '轮播图',
   `link_url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '跳转链接',
@@ -229,6 +153,7 @@ CREATE TABLE `mall_banner`  (
 -- ----------------------------
 -- Records of mall_banner
 -- ----------------------------
+INSERT INTO `mall_banner` VALUES (1, '阿打算', 'https://bigeyun.oss-cn-shenzhen.aliyuncs.com/2021-06-13/b7c5a2d2-c0e6-4c2d-8d04-b3434d9be51c_5209.jpg', 'ada', NULL, 1, '2021-06-13 16:06:22', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for mall_brand
@@ -247,13 +172,37 @@ CREATE TABLE `mall_brand`  (
   `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新者',
   `create_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`brand_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci COMMENT = '品牌' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci COMMENT = '品牌' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_brand
 -- ----------------------------
-INSERT INTO `mall_brand` VALUES (1, '好牌子', 'https://bigeyun.oss-cn-shenzhen.aliyuncs.com/2021-06-12/eb800b78-f426-493f-886a-31e863098b11_分02秒.png', '1', 12, 'a', 'asd', '', NULL, NULL, '2021-06-12 15:51:26');
-INSERT INTO `mall_brand` VALUES (2, '阿萨大', NULL, '1', NULL, NULL, NULL, '', NULL, NULL, '2021-06-12 16:19:12');
+INSERT INTO `mall_brand` VALUES (1, '好牌子', 'https://bigeyun.oss-cn-shenzhen.aliyuncs.com/2021-06-13/9ba74059-2fd9-48f9-8e13-82f367acfcad_0907.png', '1', 12, 'a', 'asd', '', '2021-06-13 15:49:17', NULL, '2021-06-12 15:51:26');
+INSERT INTO `mall_brand` VALUES (2, '阿萨大', 'https://bigeyun.oss-cn-shenzhen.aliyuncs.com/2021-06-13/e9ae445c-b3f8-4638-8bd3-fc523c84465d_5209.jpg', '1', 1, 'q', 'das', '', '2021-06-13 15:50:33', NULL, '2021-06-12 16:19:12');
+
+-- ----------------------------
+-- Table structure for mall_cart
+-- ----------------------------
+DROP TABLE IF EXISTS `mall_cart`;
+CREATE TABLE `mall_cart`  (
+  `cart_id` int NOT NULL COMMENT '购物车ID',
+  `customer_id` int NULL DEFAULT NULL COMMENT '客户',
+  `goods_id` int NULL DEFAULT NULL COMMENT '规格Id',
+  `product_id` int NULL DEFAULT NULL COMMENT '商品Id',
+  `sale_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '售价',
+  `standard_json` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '规格Json',
+  `product_name` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品名',
+  `number` int NULL DEFAULT NULL COMMENT '数量',
+  `product_img` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品图',
+  `buyer_msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '买家留言',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`cart_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '购物车' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of mall_cart
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for mall_category
@@ -274,11 +223,13 @@ CREATE TABLE `mall_category`  (
   `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`category_id`) USING BTREE,
   INDEX `INDEX_PARENT`(`parent_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1158 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '品类信息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1161 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '品类信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_category
 -- ----------------------------
+INSERT INTO `mall_category` VALUES (1159, '品类1', 'https://bigeyun.oss-cn-shenzhen.aliyuncs.com/2021-06-13/4ac88e13-6f49-499d-87d1-9fd5b0532bd0_5724.jpg', 0, '1', 5, 0.00, '1', '2021-06-13 16:25:13', NULL, '2021-06-13 16:44:30', NULL);
+INSERT INTO `mall_category` VALUES (1160, '阿打算', 'https://bigeyun.oss-cn-shenzhen.aliyuncs.com/2021-06-13/32b7435a-cc09-428a-863a-d9b7dd82955c_5209.jpg', 1159, '2', 2, 0.00, '1', '2021-06-13 16:43:39', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for mall_customer
@@ -710,7 +661,7 @@ CREATE TABLE `qrtz_scheduler_state`  (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('RuoyiScheduler', 'bige1623566820342', 1623568175499, 15000);
+INSERT INTO `qrtz_scheduler_state` VALUES ('RuoyiScheduler', 'bige1623574416546', 1623575215740, 15000);
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -787,9 +738,9 @@ CREATE TABLE `qrtz_triggers`  (
 -- ----------------------------
 -- Records of qrtz_triggers
 -- ----------------------------
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 1623566820000, -1, 5, 'PAUSED', 'CRON', 1623566820000, 0, NULL, 2, '');
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 1623566820000, -1, 5, 'PAUSED', 'CRON', 1623566820000, 0, NULL, 2, '');
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 1623566820000, -1, 5, 'PAUSED', 'CRON', 1623566820000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 1623574420000, -1, 5, 'PAUSED', 'CRON', 1623574416000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 1623574425000, -1, 5, 'PAUSED', 'CRON', 1623574416000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 1623574420000, -1, 5, 'PAUSED', 'CRON', 1623574416000, 0, NULL, 2, '');
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -980,7 +931,7 @@ CREATE TABLE `sys_job_log`  (
   `exception_info` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '异常信息',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`job_log_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务调度日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务调度日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_job_log
@@ -1001,7 +952,7 @@ CREATE TABLE `sys_logininfor`  (
   `msg` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '提示消息',
   `login_time` datetime NULL DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 132 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 137 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -1041,6 +992,8 @@ INSERT INTO `sys_logininfor` VALUES (131, 'admin', '127.0.0.1', '内网IP', 'Chr
 INSERT INTO `sys_logininfor` VALUES (132, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '1', '验证码错误', '2021-06-13 01:31:40');
 INSERT INTO `sys_logininfor` VALUES (133, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-06-13 01:31:45');
 INSERT INTO `sys_logininfor` VALUES (134, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-06-13 14:41:25');
+INSERT INTO `sys_logininfor` VALUES (135, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-06-13 15:21:58');
+INSERT INTO `sys_logininfor` VALUES (136, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-06-13 16:56:06');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -1066,7 +1019,7 @@ CREATE TABLE `sys_menu`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2025 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单权限表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2082 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单权限表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -1206,6 +1159,30 @@ INSERT INTO `sys_menu` VALUES (2054, '商品规格新增', 2052, 2, '#', '', 1, 
 INSERT INTO `sys_menu` VALUES (2055, '商品规格修改', 2052, 3, '#', '', 1, 0, 'F', '0', '0', 'mall:standard:edit', '#', 'admin', '2021-06-13 01:52:18', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2056, '商品规格删除', 2052, 4, '#', '', 1, 0, 'F', '0', '0', 'mall:standard:remove', '#', 'admin', '2021-06-13 01:52:18', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2057, '商品规格导出', 2052, 5, '#', '', 1, 0, 'F', '0', '0', 'mall:standard:export', '#', 'admin', '2021-06-13 01:52:18', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2058, '购物卡', 2025, 1, 'card', 'mall/card/index', 1, 0, 'C', '0', '0', 'mall:card:list', '#', 'admin', '2021-06-13 15:44:55', '', NULL, '购物卡菜单');
+INSERT INTO `sys_menu` VALUES (2059, '购物卡查询', 2058, 1, '#', '', 1, 0, 'F', '0', '0', 'mall:card:query', '#', 'admin', '2021-06-13 15:44:55', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2060, '购物卡新增', 2058, 2, '#', '', 1, 0, 'F', '0', '0', 'mall:card:add', '#', 'admin', '2021-06-13 15:44:55', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2061, '购物卡修改', 2058, 3, '#', '', 1, 0, 'F', '0', '0', 'mall:card:edit', '#', 'admin', '2021-06-13 15:44:55', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2062, '购物卡删除', 2058, 4, '#', '', 1, 0, 'F', '0', '0', 'mall:card:remove', '#', 'admin', '2021-06-13 15:44:55', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2063, '购物卡导出', 2058, 5, '#', '', 1, 0, 'F', '0', '0', 'mall:card:export', '#', 'admin', '2021-06-13 15:44:55', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2064, '购物车', 2025, 1, 'cart', 'mall/cart/index', 1, 0, 'C', '0', '0', 'mall:cart:list', '#', 'admin', '2021-06-13 15:45:21', '', NULL, '购物车菜单');
+INSERT INTO `sys_menu` VALUES (2065, '购物车查询', 2064, 1, '#', '', 1, 0, 'F', '0', '0', 'mall:cart:query', '#', 'admin', '2021-06-13 15:45:21', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2066, '购物车新增', 2064, 2, '#', '', 1, 0, 'F', '0', '0', 'mall:cart:add', '#', 'admin', '2021-06-13 15:45:21', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2067, '购物车修改', 2064, 3, '#', '', 1, 0, 'F', '0', '0', 'mall:cart:edit', '#', 'admin', '2021-06-13 15:45:21', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2068, '购物车删除', 2064, 4, '#', '', 1, 0, 'F', '0', '0', 'mall:cart:remove', '#', 'admin', '2021-06-13 15:45:21', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2069, '购物车导出', 2064, 5, '#', '', 1, 0, 'F', '0', '0', 'mall:cart:export', '#', 'admin', '2021-06-13 15:45:21', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2070, '前端客户', 2025, 1, 'customer', 'mall/customer/index', 1, 0, 'C', '0', '0', 'mall:customer:list', '#', 'admin', '2021-06-13 15:46:15', '', NULL, '前端客户菜单');
+INSERT INTO `sys_menu` VALUES (2071, '前端客户查询', 2070, 1, '#', '', 1, 0, 'F', '0', '0', 'mall:customer:query', '#', 'admin', '2021-06-13 15:46:15', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2072, '前端客户新增', 2070, 2, '#', '', 1, 0, 'F', '0', '0', 'mall:customer:add', '#', 'admin', '2021-06-13 15:46:15', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2073, '前端客户修改', 2070, 3, '#', '', 1, 0, 'F', '0', '0', 'mall:customer:edit', '#', 'admin', '2021-06-13 15:46:15', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2074, '前端客户删除', 2070, 4, '#', '', 1, 0, 'F', '0', '0', 'mall:customer:remove', '#', 'admin', '2021-06-13 15:46:15', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2075, '前端客户导出', 2070, 5, '#', '', 1, 0, 'F', '0', '0', 'mall:customer:export', '#', 'admin', '2021-06-13 15:46:15', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2076, '客户购物金', 2025, 1, 'shop', 'mall/shop/index', 1, 0, 'C', '0', '0', 'mall:shop:list', '#', 'admin', '2021-06-13 15:47:37', '', NULL, '客户购物金菜单');
+INSERT INTO `sys_menu` VALUES (2077, '客户购物金查询', 2076, 1, '#', '', 1, 0, 'F', '0', '0', 'mall:shop:query', '#', 'admin', '2021-06-13 15:47:37', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2078, '客户购物金新增', 2076, 2, '#', '', 1, 0, 'F', '0', '0', 'mall:shop:add', '#', 'admin', '2021-06-13 15:47:37', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2079, '客户购物金修改', 2076, 3, '#', '', 1, 0, 'F', '0', '0', 'mall:shop:edit', '#', 'admin', '2021-06-13 15:47:37', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2080, '客户购物金删除', 2076, 4, '#', '', 1, 0, 'F', '0', '0', 'mall:shop:remove', '#', 'admin', '2021-06-13 15:47:37', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2081, '客户购物金导出', 2076, 5, '#', '', 1, 0, 'F', '0', '0', 'mall:shop:export', '#', 'admin', '2021-06-13 15:47:37', '', NULL, '');
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -1253,7 +1230,7 @@ CREATE TABLE `sys_oper_log`  (
   `error_msg` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime NULL DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`oper_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 280 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 330 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -1471,6 +1448,23 @@ INSERT INTO `sys_oper_log` VALUES (309, '代码生成', 2, 'com.bige.generator.c
 INSERT INTO `sys_oper_log` VALUES (310, '代码生成', 2, 'com.bige.generator.controller.GenController.editSave()', 'PUT', 1, 'admin', NULL, '/tool/gen', '127.0.0.1', '内网IP', '{\"sub\":false,\"functionAuthor\":\"bige\",\"columns\":[{\"capJavaField\":\"ProductId\",\"usableColumn\":false,\"columnId\":510,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"productId\",\"htmlType\":\"input\",\"edit\":false,\"query\":false,\"columnComment\":\"商品Id\",\"sort\":1,\"list\":false,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int\",\"createBy\":\"admin\",\"isPk\":\"1\",\"createTime\":1623519149000,\"tableId\":63,\"pk\":true,\"columnName\":\"product_id\"},{\"capJavaField\":\"StandardName\",\"usableColumn\":false,\"columnId\":511,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"standardName\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"规格名\",\"isQuery\":\"1\",\"sort\":2,\"list\":true,\"params\":{},\"javaType\":\"String\",\"queryType\":\"LIKE\",\"columnType\":\"varchar(40)\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1623519149000,\"isEdit\":\"1\",\"tableId\":63,\"pk\":false,\"columnName\":\"standard_name\"},{\"capJavaField\":\"StandardValue\",\"usableColumn\":false,\"columnId\":512,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"standardValue\",\"htmlType\":\"textarea\",\"edit\":true,\"query\":true,\"columnComment\":\"规格值\",\"isQuery\":\"1\",\"sort\":3,\"list\":true,\"params\":{},\"javaType\":\"String\",\"queryType\":\"EQ\",\"columnType\":\"text\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1623519149000,\"isEdit\":\"1\",\"tableId\":63,\"pk\":false,\"columnName\":\"standard_value\"},{\"capJavaField\":\"Sort\",\"usableColumn\":false,\"columnId\":513,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"sort\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"排序\",\"isQuery\":\"1\",\"sort\":4,\"list\":true,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int\",\"creat', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-13 01:43:41');
 INSERT INTO `sys_oper_log` VALUES (311, '代码生成', 2, 'com.bige.generator.controller.GenController.editSave()', 'PUT', 1, 'admin', NULL, '/tool/gen', '127.0.0.1', '内网IP', '{\"sub\":false,\"functionAuthor\":\"bige\",\"columns\":[{\"capJavaField\":\"StandardId\",\"usableColumn\":false,\"columnId\":514,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"standardId\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"规格Id\",\"isQuery\":\"1\",\"sort\":1,\"list\":true,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1623519149000,\"isEdit\":\"1\",\"tableId\":64,\"pk\":false,\"columnName\":\"standard_id\"},{\"capJavaField\":\"FirstCategoryId\",\"usableColumn\":false,\"columnId\":515,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"firstCategoryId\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"一级品类\",\"isQuery\":\"1\",\"sort\":2,\"list\":true,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1623519149000,\"isEdit\":\"1\",\"tableId\":64,\"pk\":false,\"columnName\":\"first_category_id\"},{\"capJavaField\":\"SecondCategory\",\"usableColumn\":false,\"columnId\":516,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"secondCategory\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"二级品类\",\"isQuery\":\"1\",\"sort\":3,\"list\":true,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1623519149000,\"isEdit\":\"1\",\"tableId\":64,\"pk\":false,\"columnName\":\"second_category\"},{\"capJavaField\":\"ThirdCategoryId\",\"usableColumn\":false,\"columnId\":517,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"thirdCategoryId\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"三级品类\",\"isQuery\":\"1\",\"sort\":4,\"list\":true,\"params\":{', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-13 01:43:59');
 INSERT INTO `sys_oper_log` VALUES (312, '代码生成', 8, 'com.bige.generator.controller.GenController.batchGenCode()', 'GET', 1, 'admin', NULL, '/tool/gen/batchGenCode', '127.0.0.1', '内网IP', '{}', 'null', 0, NULL, '2021-06-13 01:44:53');
+INSERT INTO `sys_oper_log` VALUES (313, '代码生成', 6, 'com.bige.generator.controller.GenController.importTableSave()', 'POST', 1, 'admin', NULL, '/tool/gen/importTable', '127.0.0.1', '内网IP', 'mall_cart,mall_customer,mall_customer_shop,mall_shop_card', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-13 15:33:27');
+INSERT INTO `sys_oper_log` VALUES (314, '代码生成', 3, 'com.bige.generator.controller.GenController.remove()', 'DELETE', 1, 'admin', NULL, '/tool/gen/57,58,59,60,61,62,63,64,65,66', '127.0.0.1', '内网IP', '{tableIds=57,58,59,60,61,62,63,64,65,66}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-13 15:33:39');
+INSERT INTO `sys_oper_log` VALUES (315, '代码生成', 6, 'com.bige.generator.controller.GenController.importTableSave()', 'POST', 1, 'admin', NULL, '/tool/gen/importTable', '127.0.0.1', '内网IP', 'mall_cart,mall_customer', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-13 15:34:20');
+INSERT INTO `sys_oper_log` VALUES (316, '代码生成', 2, 'com.bige.generator.controller.GenController.editSave()', 'PUT', 1, 'admin', NULL, '/tool/gen', '127.0.0.1', '内网IP', '{\"sub\":false,\"functionAuthor\":\"bige\",\"columns\":[{\"capJavaField\":\"ShopId\",\"usableColumn\":false,\"columnId\":547,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"shopId\",\"htmlType\":\"input\",\"edit\":false,\"query\":false,\"columnComment\":\"购物金Id\",\"sort\":1,\"list\":false,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int\",\"createBy\":\"admin\",\"isPk\":\"1\",\"createTime\":1623569607000,\"tableId\":67,\"pk\":true,\"columnName\":\"shop_id\"},{\"capJavaField\":\"CustomerId\",\"usableColumn\":false,\"columnId\":548,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"customerId\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\" 用户\",\"isQuery\":\"1\",\"sort\":2,\"list\":true,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1623569607000,\"isEdit\":\"1\",\"tableId\":67,\"pk\":false,\"columnName\":\"customer_id\"},{\"capJavaField\":\"ShopNo\",\"usableColumn\":false,\"columnId\":549,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"shopNo\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"购物卡编号\",\"isQuery\":\"1\",\"sort\":3,\"list\":true,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1623569607000,\"isEdit\":\"1\",\"tableId\":67,\"pk\":false,\"columnName\":\"shop_no\"},{\"capJavaField\":\"ShopValue\",\"usableColumn\":false,\"columnId\":550,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"shopValue\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"面值\",\"isQuery\":\"1\",\"sort\":4,\"list\":true,\"params\":{},\"javaType\":\"BigDecimal\",\"queryType\":\"EQ\",\"columnType\":\"decimal(10,2)\",\"createBy\":\"admin\",\"isPk\":\"0\",\"', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-13 15:36:01');
+INSERT INTO `sys_oper_log` VALUES (317, '代码生成', 2, 'com.bige.generator.controller.GenController.editSave()', 'PUT', 1, 'admin', NULL, '/tool/gen', '127.0.0.1', '内网IP', '{\"sub\":false,\"functionAuthor\":\"bige\",\"columns\":[{\"capJavaField\":\"ShopId\",\"usableColumn\":false,\"columnId\":556,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"shopId\",\"htmlType\":\"input\",\"edit\":false,\"query\":false,\"columnComment\":\"购物卡Id\",\"sort\":1,\"list\":false,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int\",\"createBy\":\"admin\",\"isPk\":\"1\",\"createTime\":1623569607000,\"tableId\":68,\"pk\":true,\"columnName\":\"shop_id\"},{\"capJavaField\":\"BatchNo\",\"usableColumn\":false,\"columnId\":557,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"batchNo\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"批次号\",\"isQuery\":\"1\",\"sort\":2,\"list\":true,\"params\":{},\"javaType\":\"String\",\"queryType\":\"EQ\",\"columnType\":\"varchar(50)\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1623569607000,\"isEdit\":\"1\",\"tableId\":68,\"pk\":false,\"columnName\":\"batch_no\"},{\"capJavaField\":\"ShopNo\",\"usableColumn\":false,\"columnId\":558,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"shopNo\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"兑换码\",\"isQuery\":\"1\",\"sort\":3,\"list\":true,\"params\":{},\"javaType\":\"String\",\"queryType\":\"EQ\",\"columnType\":\"varchar(50)\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1623569607000,\"isEdit\":\"1\",\"tableId\":68,\"pk\":false,\"columnName\":\"shop_no\"},{\"capJavaField\":\"ShopValue\",\"usableColumn\":false,\"columnId\":559,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"shopValue\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"面值\",\"isQuery\":\"1\",\"sort\":4,\"list\":true,\"params\":{},\"javaType\":\"BigDecimal\",\"queryType\":\"EQ\",\"columnType\":\"decimal(10,2)\",\"createBy\":\"admin\",\"is', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-13 15:36:49');
+INSERT INTO `sys_oper_log` VALUES (318, '代码生成', 2, 'com.bige.generator.controller.GenController.editSave()', 'PUT', 1, 'admin', NULL, '/tool/gen', '127.0.0.1', '内网IP', '{\"sub\":false,\"functionAuthor\":\"bige\",\"columns\":[{\"capJavaField\":\"CartId\",\"usableColumn\":false,\"columnId\":569,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"cartId\",\"htmlType\":\"input\",\"edit\":false,\"query\":false,\"columnComment\":\"购物车ID\",\"sort\":1,\"list\":false,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int\",\"createBy\":\"admin\",\"isPk\":\"1\",\"createTime\":1623569660000,\"tableId\":69,\"pk\":true,\"columnName\":\"cart_id\"},{\"capJavaField\":\"CustomerId\",\"usableColumn\":false,\"columnId\":570,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"customerId\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"客户\",\"isQuery\":\"1\",\"sort\":2,\"list\":true,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1623569660000,\"isEdit\":\"1\",\"tableId\":69,\"pk\":false,\"columnName\":\"customer_id\"},{\"capJavaField\":\"GoodsId\",\"usableColumn\":false,\"columnId\":571,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"goodsId\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"规格Id\",\"isQuery\":\"1\",\"sort\":3,\"list\":true,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1623569660000,\"isEdit\":\"1\",\"tableId\":69,\"pk\":false,\"columnName\":\"goods_id\"},{\"capJavaField\":\"ProductId\",\"usableColumn\":false,\"columnId\":572,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"productId\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"商品Id\",\"isQuery\":\"1\",\"sort\":4,\"list\":true,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-13 15:37:09');
+INSERT INTO `sys_oper_log` VALUES (319, '代码生成', 2, 'com.bige.generator.controller.GenController.editSave()', 'PUT', 1, 'admin', NULL, '/tool/gen', '127.0.0.1', '内网IP', '{\"sub\":false,\"functionAuthor\":\"bige\",\"columns\":[{\"capJavaField\":\"CustomerId\",\"usableColumn\":false,\"columnId\":581,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"customerId\",\"htmlType\":\"input\",\"edit\":false,\"query\":false,\"columnComment\":\"用户Id\",\"sort\":1,\"list\":false,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int\",\"createBy\":\"admin\",\"isPk\":\"1\",\"createTime\":1623569660000,\"tableId\":70,\"pk\":true,\"columnName\":\"customer_id\"},{\"capJavaField\":\"OpenidId\",\"usableColumn\":false,\"columnId\":582,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"openidId\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"微信唯一标识\",\"isQuery\":\"1\",\"sort\":2,\"list\":true,\"params\":{},\"javaType\":\"Long\",\"queryType\":\"EQ\",\"columnType\":\"int\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1623569660000,\"isEdit\":\"1\",\"tableId\":70,\"pk\":false,\"columnName\":\"openid_id\"},{\"capJavaField\":\"PortraitImg\",\"usableColumn\":false,\"columnId\":583,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"portraitImg\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"头像\",\"isQuery\":\"1\",\"sort\":3,\"list\":true,\"params\":{},\"javaType\":\"String\",\"queryType\":\"EQ\",\"columnType\":\"varchar(100)\",\"createBy\":\"admin\",\"isPk\":\"0\",\"createTime\":1623569660000,\"isEdit\":\"1\",\"tableId\":70,\"pk\":false,\"columnName\":\"portrait_img\"},{\"capJavaField\":\"Phone\",\"usableColumn\":false,\"columnId\":584,\"isIncrement\":\"0\",\"increment\":false,\"insert\":true,\"isList\":\"1\",\"dictType\":\"\",\"required\":false,\"superColumn\":false,\"updateBy\":\"\",\"isInsert\":\"1\",\"javaField\":\"phone\",\"htmlType\":\"input\",\"edit\":true,\"query\":true,\"columnComment\":\"电话号码\",\"isQuery\":\"1\",\"sort\":4,\"list\":true,\"params\":{},\"javaType\":\"String\",\"queryType\":\"EQ\",\"columnType\":\"varchar(20)\",\"createBy\":\"', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-13 15:37:25');
+INSERT INTO `sys_oper_log` VALUES (320, '代码生成', 8, 'com.bige.generator.controller.GenController.batchGenCode()', 'GET', 1, 'admin', NULL, '/tool/gen/batchGenCode', '127.0.0.1', '内网IP', '{}', 'null', 0, NULL, '2021-06-13 15:37:31');
+INSERT INTO `sys_oper_log` VALUES (321, '品牌', 2, 'com.bige.web.controller.mall.MallBrandController.edit()', 'PUT', 1, 'admin', NULL, '/mall/brand', '127.0.0.1', '内网IP', '{\"brandImg\":\"https://bigeyun.oss-cn-shenzhen.aliyuncs.com/2021-06-13/9ba74059-2fd9-48f9-8e13-82f367acfcad_0907.png\",\"brandName\":\"好牌子\",\"updateTime\":1623570557287,\"sort\":12,\"params\":{},\"createBy\":\"\",\"createTime\":1623484286000,\"brandId\":1,\"descript\":\"asd\",\"firstLetter\":\"a\",\"status\":\"1\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-13 15:49:17');
+INSERT INTO `sys_oper_log` VALUES (322, '品牌', 2, 'com.bige.web.controller.mall.MallBrandController.edit()', 'PUT', 1, 'admin', NULL, '/mall/brand', '127.0.0.1', '内网IP', '{\"brandImg\":\"https://bigeyun.oss-cn-shenzhen.aliyuncs.com/2021-06-13/e9ae445c-b3f8-4638-8bd3-fc523c84465d_5209.jpg\",\"brandName\":\"阿萨大\",\"updateTime\":1623570632978,\"sort\":1,\"params\":{},\"createBy\":\"\",\"createTime\":1623485952000,\"brandId\":2,\"descript\":\"das\",\"firstLetter\":\"q\",\"status\":\"1\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-13 15:50:33');
+INSERT INTO `sys_oper_log` VALUES (323, '轮播图', 1, 'com.bige.web.controller.mall.MallBannerController.add()', 'POST', 1, 'admin', NULL, '/mall/banner', '127.0.0.1', '内网IP', '{\"bannerName\":\"阿打算\",\"sort\":1,\"params\":{},\"createTime\":1623571468665,\"linkUrl\":\"ada\",\"bannerImg\":\"https://bigeyun.oss-cn-shenzhen.aliyuncs.com/2021-06-13/b7c5a2d2-c0e6-4c2d-8d04-b3434d9be51c_5209.jpg\"}', 'null', 1, '\r\n### Error updating database.  Cause: java.sql.SQLException: Field \'banner_id\' doesn\'t have a default value\r\n### The error may exist in file [E:\\bige\\bige-store\\Bige-store-java\\bige-system\\target\\classes\\mapper\\system\\mall\\MallBannerMapper.xml]\r\n### The error may involve com.bige.system.mapper.MallBannerMapper.insertMallBanner-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into mall_banner          ( banner_name,             banner_img,             link_url,                          sort,             create_time )           values ( ?,             ?,             ?,                          ?,             ? )\r\n### Cause: java.sql.SQLException: Field \'banner_id\' doesn\'t have a default value\n; Field \'banner_id\' doesn\'t have a default value; nested exception is java.sql.SQLException: Field \'banner_id\' doesn\'t have a default value', '2021-06-13 16:04:28');
+INSERT INTO `sys_oper_log` VALUES (324, '轮播图', 1, 'com.bige.web.controller.mall.MallBannerController.add()', 'POST', 1, 'admin', NULL, '/mall/banner', '127.0.0.1', '内网IP', '{\"bannerName\":\"阿打算\",\"sort\":1,\"params\":{},\"createTime\":1623571483563,\"linkUrl\":\"ada\",\"bannerImg\":\"https://bigeyun.oss-cn-shenzhen.aliyuncs.com/2021-06-13/b7c5a2d2-c0e6-4c2d-8d04-b3434d9be51c_5209.jpg\"}', 'null', 1, '\r\n### Error updating database.  Cause: java.sql.SQLException: Field \'banner_id\' doesn\'t have a default value\r\n### The error may exist in file [E:\\bige\\bige-store\\Bige-store-java\\bige-system\\target\\classes\\mapper\\system\\mall\\MallBannerMapper.xml]\r\n### The error may involve com.bige.system.mapper.MallBannerMapper.insertMallBanner-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into mall_banner          ( banner_name,             banner_img,             link_url,                          sort,             create_time )           values ( ?,             ?,             ?,                          ?,             ? )\r\n### Cause: java.sql.SQLException: Field \'banner_id\' doesn\'t have a default value\n; Field \'banner_id\' doesn\'t have a default value; nested exception is java.sql.SQLException: Field \'banner_id\' doesn\'t have a default value', '2021-06-13 16:04:43');
+INSERT INTO `sys_oper_log` VALUES (325, '轮播图', 1, 'com.bige.web.controller.mall.MallBannerController.add()', 'POST', 1, 'admin', NULL, '/mall/banner', '127.0.0.1', '内网IP', '{\"bannerName\":\"阿打算\",\"sort\":1,\"params\":{},\"createTime\":1623571506670,\"linkUrl\":\"ada\",\"bannerImg\":\"https://bigeyun.oss-cn-shenzhen.aliyuncs.com/2021-06-13/b7c5a2d2-c0e6-4c2d-8d04-b3434d9be51c_5209.jpg\"}', 'null', 1, '\r\n### Error updating database.  Cause: java.sql.SQLException: Field \'banner_id\' doesn\'t have a default value\r\n### The error may exist in file [E:\\bige\\bige-store\\Bige-store-java\\bige-system\\target\\classes\\mapper\\system\\mall\\MallBannerMapper.xml]\r\n### The error may involve com.bige.system.mapper.MallBannerMapper.insertMallBanner-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into mall_banner          ( banner_name,             banner_img,             link_url,                          sort,             create_time )           values ( ?,             ?,             ?,                          ?,             ? )\r\n### Cause: java.sql.SQLException: Field \'banner_id\' doesn\'t have a default value\n; Field \'banner_id\' doesn\'t have a default value; nested exception is java.sql.SQLException: Field \'banner_id\' doesn\'t have a default value', '2021-06-13 16:05:06');
+INSERT INTO `sys_oper_log` VALUES (326, '轮播图', 1, 'com.bige.web.controller.mall.MallBannerController.add()', 'POST', 1, 'admin', NULL, '/mall/banner', '127.0.0.1', '内网IP', '{\"bannerName\":\"阿打算\",\"sort\":1,\"params\":{},\"createTime\":1623571582433,\"linkUrl\":\"ada\",\"bannerImg\":\"https://bigeyun.oss-cn-shenzhen.aliyuncs.com/2021-06-13/b7c5a2d2-c0e6-4c2d-8d04-b3434d9be51c_5209.jpg\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-13 16:06:22');
+INSERT INTO `sys_oper_log` VALUES (327, '品类信息', 1, 'com.bige.web.controller.mall.MallCategoryController.add()', 'POST', 1, 'admin', NULL, '/mall/category', '127.0.0.1', '内网IP', '{\"sort\":5,\"params\":{},\"categoryImg\":\"adsasd\",\"categoryName\":\"品类1\",\"parentId\":0,\"categoryType\":\"1\",\"createTime\":1623572712558,\"categoryId\":1159,\"status\":\"1\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-13 16:25:12');
+INSERT INTO `sys_oper_log` VALUES (328, '品类信息', 1, 'com.bige.web.controller.mall.MallCategoryController.add()', 'POST', 1, 'admin', NULL, '/mall/category', '127.0.0.1', '内网IP', '{\"sort\":2,\"params\":{},\"categoryImg\":\"https://bigeyun.oss-cn-shenzhen.aliyuncs.com/2021-06-13/32b7435a-cc09-428a-863a-d9b7dd82955c_5209.jpg\",\"categoryName\":\"阿打算\",\"parentId\":1159,\"categoryType\":\"2\",\"createTime\":1623573819008,\"categoryId\":1160,\"status\":\"1\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-13 16:43:39');
+INSERT INTO `sys_oper_log` VALUES (329, '品类信息', 2, 'com.bige.web.controller.mall.MallCategoryController.edit()', 'PUT', 1, 'admin', NULL, '/mall/category', '127.0.0.1', '内网IP', '{\"updateTime\":1623573870042,\"sort\":5,\"params\":{},\"categoryImg\":\"https://bigeyun.oss-cn-shenzhen.aliyuncs.com/2021-06-13/4ac88e13-6f49-499d-87d1-9fd5b0532bd0_5724.jpg\",\"categoryName\":\"品类1\",\"parentId\":0,\"categoryType\":\"1\",\"chargeRate\":0,\"createTime\":1623572713000,\"categoryId\":1159,\"status\":\"1\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-13 16:44:30');
 
 -- ----------------------------
 -- Table structure for sys_post
