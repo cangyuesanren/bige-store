@@ -20,7 +20,7 @@ import java.util.Map;
 
 @Api(tags = "客户端oss")
 @RestController
-@RequestMapping("/mall/oss")
+@RequestMapping("/app/oss")
 public class OssController {
 
     @Value("${spring.cloud.access-key}")

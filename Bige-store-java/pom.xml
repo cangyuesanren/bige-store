@@ -55,6 +55,13 @@
                 <version>${druid.version}</version>
             </dependency>
 
+            <!--oss依赖-->
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>3.10.2</version>
+            </dependency>
+
             <!-- 解析客户端操作系统、浏览器等 -->
             <dependency>
                 <groupId>eu.bitwalker</groupId>
@@ -221,6 +228,7 @@
 
     <modules>
         <module>bige-admin</module>
+        <module>bige-app</module>
         <module>bige-framework</module>
         <module>bige-system</module>
         <module>bige-quartz</module>

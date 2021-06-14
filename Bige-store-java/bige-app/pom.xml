@@ -9,10 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
-    <artifactId>bige-admin</artifactId>
+    <artifactId>bige-app</artifactId>
 
     <description>
-        web服务入口
+        客户端服务入口
     </description>
 
     <dependencies>
