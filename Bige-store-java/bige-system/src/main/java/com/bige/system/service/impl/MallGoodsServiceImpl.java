@@ -93,4 +93,9 @@ public class MallGoodsServiceImpl implements IMallGoodsService
     {
         return mallGoodsMapper.deleteMallGoodsById(goodsId);
     }
+
+    @Override
+    public int deleteMallGoodsByProductId(Long productId) {
+        return mallGoodsMapper.deleteMallGoodsByProductId(productId);
+    }
 }

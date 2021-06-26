@@ -90,4 +90,9 @@ public class MallProductImgsServiceImpl implements IMallProductImgsService
     {
         return mallProductImgsMapper.deleteMallProductImgsById(productImgId);
     }
+
+    @Override
+    public int deleteMallProductImgsByProductId(Long productId) {
+        return mallProductImgsMapper.deleteMallProductImgsByProductId(productId);
+    }
 }

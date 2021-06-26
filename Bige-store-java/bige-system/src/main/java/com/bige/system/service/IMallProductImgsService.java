@@ -58,4 +58,12 @@ public interface IMallProductImgsService
      * @return 结果
      */
     public int deleteMallProductImgsById(Long productImgId);
+
+    /**
+     * 删除商品图信息 根据productId
+     *
+     * @param productId 商品图ID
+     * @return 结果
+     */
+    public int deleteMallProductImgsByProductId(Long productId);
 }

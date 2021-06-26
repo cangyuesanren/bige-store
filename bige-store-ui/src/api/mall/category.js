@@ -9,6 +9,15 @@ export function listCategory(query) {
   })
 }
 
+// 查询品类信息树形
+export function listTreeCategory(query) {
+  return request({
+    url: '/mall/category/listTree',
+    method: 'get',
+    params: query
+  })
+}
+
 // 查询品类信息详细
 export function getCategory(categoryId) {
   return request({

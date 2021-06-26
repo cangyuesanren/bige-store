@@ -45,7 +45,7 @@ public class OssController {
 
         String formatDate = DateUtils.getDate();
         // 用户上传文件时指定的前缀。
-        String dir = formatDate + "/"; // 用户上传文件时指定的前缀。
+        String dir = "bige-store/" + formatDate + "/"; // 用户上传文件时指定的前缀。
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessId, accessKey);
         try {
             long expireTime = 30;

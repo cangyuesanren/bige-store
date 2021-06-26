@@ -58,4 +58,12 @@ public interface MallProductStandardMapper
      * @return 结果
      */
     public int deleteMallProductStandardByIds(Long[] productIds);
+
+    /**
+     * 批量删除商品规格
+     *
+     * @param productId 需要删除的数据的商品ID
+     * @return 结果
+     */
+    public int deleteMallProductStandardByProductId(Long productId);
 }

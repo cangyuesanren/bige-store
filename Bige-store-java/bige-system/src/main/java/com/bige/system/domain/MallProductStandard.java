@@ -7,15 +7,19 @@ import com.bige.common.core.domain.BaseEntity;
 
 /**
  * 商品规格对象 mall_product_standard
- * 
+ *
  * @author bige
- * @date 2021-06-13
+ * @date 2021-06-20
  */
 public class MallProductStandard extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
+    /** 商品规格Id */
+    private Long productStandardId;
+
     /** 商品Id */
+    @Excel(name = "商品Id")
     private Long productId;
 
     /** 规格名 */
@@ -30,39 +34,48 @@ public class MallProductStandard extends BaseEntity
     @Excel(name = "排序")
     private Long sort;
 
-    public void setProductId(Long productId) 
+    public void setProductStandardId(Long productStandardId)
+    {
+        this.productStandardId = productStandardId;
+    }
+
+    public Long getProductStandardId()
+    {
+        return productStandardId;
+    }
+    public void setProductId(Long productId)
     {
         this.productId = productId;
     }
 
-    public Long getProductId() 
+    public Long getProductId()
     {
         return productId;
     }
-    public void setStandardName(String standardName) 
+    public void setStandardName(String standardName)
     {
         this.standardName = standardName;
     }
 
-    public String getStandardName() 
+    public String getStandardName()
     {
         return standardName;
     }
-    public void setStandardValue(String standardValue) 
+    public void setStandardValue(String standardValue)
     {
         this.standardValue = standardValue;
     }
 
-    public String getStandardValue() 
+    public String getStandardValue()
     {
         return standardValue;
     }
-    public void setSort(Long sort) 
+    public void setSort(Long sort)
     {
         this.sort = sort;
     }
 
-    public Long getSort() 
+    public Long getSort()
     {
         return sort;
     }
@@ -70,10 +83,11 @@ public class MallProductStandard extends BaseEntity
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("productId", getProductId())
-            .append("standardName", getStandardName())
-            .append("standardValue", getStandardValue())
-            .append("sort", getSort())
-            .toString();
+                .append("productStandardId", getProductStandardId())
+                .append("productId", getProductId())
+                .append("standardName", getStandardName())
+                .append("standardValue", getStandardValue())
+                .append("sort", getSort())
+                .toString();
     }
 }

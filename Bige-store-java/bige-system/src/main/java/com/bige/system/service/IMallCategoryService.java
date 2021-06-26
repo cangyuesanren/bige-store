@@ -28,6 +28,13 @@ public interface IMallCategoryService
     public List<MallCategory> selectMallCategoryList(MallCategory mallCategory);
 
     /**
+     * 查询品类信息列表树形
+     *
+     * @return 品类信息集合
+     */
+    public List<MallCategory> selectMallCategoryTreeList();
+
+    /**
      * 新增品类信息
      * 
      * @param mallCategory 品类信息

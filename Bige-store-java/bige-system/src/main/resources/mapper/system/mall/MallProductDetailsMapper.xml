@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bige.system.mapper.MallProductDetailsMapper">
+
+    <resultMap type="MallProductDetails" id="MallProductDetailsResult">
+        <result property="productId"    column="product_id"    />
+        <result property="productDetails"    column="product_details"    />
+    </resultMap>
+
+    <sql id="selectMallProductDetailsVo">
+        select product_id, product_details from mall_product_details
+    </sql>
+
+    <select id="selectMallProductDetailsList" parameterType="MallProductDetails" resultMap="MallProductDetailsResult">
+        <include refid="selectMallProductDetailsVo"/>
+        <where>
+            <if test="productDetails != null  and productDetails != ''"> and product_details = #{productDetails}</if>
+        </where>
+    </select>
+
+    <select id="selectMallProductDetailsById" parameterType="Long" resultMap="MallProductDetailsResult">
+        <include refid="selectMallProductDetailsVo"/>
+        where product_id = #{productId}
+    </select>
+
+    <insert id="insertMallProductDetails" parameterType="MallProductDetails">
+        insert into mall_product_details
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productId != null">product_id,</if>
+            <if test="productDetails != null">product_details,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productId != null">#{productId},</if>
+            <if test="productDetails != null">#{productDetails},</if>
+        </trim>
+    </insert>
+
+    <update id="updateMallProductDetails" parameterType="MallProductDetails">
+        update mall_product_details
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="productDetails != null">product_details = #{productDetails},</if>
+        </trim>
+        where product_id = #{productId}
+    </update>
+
+    <delete id="deleteMallProductDetailsById" parameterType="Long">
+        delete from mall_product_details where product_id = #{productId}
+    </delete>
+
+    <delete id="deleteMallProductDetailsByIds" parameterType="String">
+        delete from mall_product_details where product_id in
+        <foreach item="productId" collection="array" open="(" separator="," close=")">
+            #{productId}
+        </foreach>
+    </delete>
+</mapper>

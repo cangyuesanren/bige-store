@@ -3,6 +3,7 @@ package com.bige.web.controller.mall;
 import java.util.List;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +80,7 @@ public class MallProductController extends BaseController
      * 新增商品
      */
     @ApiOperation(value = "新增商品")
+    @ApiImplicitParam(name = "mallProduct", value = "新增商品", dataType = "MallProduct")
     @PreAuthorize("@ss.hasPermi('mall:product:add')")
     @Log(title = "商品", businessType = BusinessType.INSERT)
     @PostMapping

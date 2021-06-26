@@ -90,4 +90,16 @@ public class MallProductStandardServiceImpl implements IMallProductStandardServi
     {
         return mallProductStandardMapper.deleteMallProductStandardById(productId);
     }
+
+    /**
+     * 删除商品规格信息根据商品Id
+     *
+     * @param productId 商品规格ID
+     * @return 结果
+     */
+    @Override
+    public int deleteMallProductStandardByProductId(Long productId) {
+        return mallProductStandardMapper.deleteMallProductStandardByProductId(productId);
+    }
+
 }

@@ -53,9 +53,18 @@ public interface MallProductImgsMapper
 
     /**
      * 批量删除商品图
-     * 
+     *
      * @param productImgIds 需要删除的数据ID
      * @return 结果
      */
     public int deleteMallProductImgsByIds(Long[] productImgIds);
+
+    /**
+     * 删除商品图根据productId
+     *
+     * @param productId 商品图ID
+     * @return 结果
+     */
+    public int deleteMallProductImgsByProductId(Long productId);
+
 }

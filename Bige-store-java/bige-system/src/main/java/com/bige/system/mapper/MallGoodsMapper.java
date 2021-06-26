@@ -58,4 +58,12 @@ public interface MallGoodsMapper
      * @return 结果
      */
     public int deleteMallGoodsByIds(Long[] goodsIds);
+
+    /**
+     * 删除商品sku根据商品Id
+     *
+     * @param productId 商品skuID
+     * @return 结果
+     */
+    public int deleteMallGoodsByProductId(Long productId);
 }

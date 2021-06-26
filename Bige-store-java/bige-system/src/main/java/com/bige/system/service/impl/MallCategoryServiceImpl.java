@@ -1,6 +1,8 @@
 package com.bige.system.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 import com.bige.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +44,38 @@ public class MallCategoryServiceImpl implements IMallCategoryService
     public List<MallCategory> selectMallCategoryList(MallCategory mallCategory)
     {
         return mallCategoryMapper.selectMallCategoryList(mallCategory);
+    }
+
+    /**
+     * 查询品类信息列表树形
+     *
+     * @return 品类信息集合
+     */
+    @Override
+    public List<MallCategory> selectMallCategoryTreeList() {
+        
+        List<MallCategory> allList  = mallCategoryMapper.selectMallCategoryList(new MallCategory());
+        /*List<MallCategoryTreeVo> treeList = allList.stream().filter();*/
+        List<MallCategory> treeList = allList.stream().filter( mallCategory ->
+                mallCategory.getParentId() == 0
+        ).map((item) -> {
+            item.setChildren(getChildrenList(item,allList));
+            return item;
+        }).collect(Collectors.toList());
+        //System.out.println(allList);
+
+
+        return treeList;
+    }
+
+    private List<MallCategory> getChildrenList(MallCategory father, List<MallCategory> allList){
+        List<MallCategory> chidrens = allList.stream().filter(mallCategory ->
+                mallCategory.getParentId().equals(father.getCategoryId())
+        ).map(mallCategory -> {
+            mallCategory.setChildren(getChildrenList(mallCategory,allList));
+            return mallCategory;
+        }).collect(Collectors.toList());
+        return chidrens;
     }
 
     /**

@@ -1,6 +1,8 @@
 package com.bige.system.domain;
 
 import java.math.BigDecimal;
+import java.util.List;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.bige.common.annotation.Excel;
@@ -34,6 +36,9 @@ public class MallCategory extends BaseEntity
     /** 类型（ 1一级 2二级 3三级） */
     @Excel(name = "类型", readConverterExp = "1=一级,2=二级,3=三级")
     private String categoryType;
+
+    /** 子列表 */
+    private List<MallCategory> children;
 
     /** 排序 */
     @Excel(name = "排序")
@@ -118,6 +123,14 @@ public class MallCategory extends BaseEntity
     public String getStatus() 
     {
         return status;
+    }
+
+    public List<MallCategory> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<MallCategory> children) {
+        this.children = children;
     }
 
     @Override

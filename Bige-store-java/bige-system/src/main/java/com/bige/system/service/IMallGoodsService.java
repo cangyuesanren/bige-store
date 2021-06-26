@@ -58,4 +58,12 @@ public interface IMallGoodsService
      * @return 结果
      */
     public int deleteMallGoodsById(Long goodsId);
+
+    /**
+     * 删除商品sku信息根据商品Id
+     *
+     * @param productId 商品ID
+     * @return 结果
+     */
+    public int deleteMallGoodsByProductId(Long productId);
 }

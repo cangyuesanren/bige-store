@@ -1,178 +1,220 @@
 <template>
   <div>
+    <!-- 图片上传组件辅助 -->
     <el-upload
-      :action="uploadUrl"
-      :on-success="handleUploadSuccess"
-      :on-error="handleUploadError"
+      class="avatar-uploader quill-img"
+      :action="dataObj.host"
+      :data="dataObj"
       name="file"
       :show-file-list="false"
-      :headers="headers"
-      style="display: none"
-      ref="upload"
-      v-if="this.uploadUrl"
-    >
-    </el-upload>
-    <div class="editor" ref="editor" :style="styles"></div>
+      :on-success="quillImgSuccess"
+      :on-error="uploadError"
+      :before-upload="quillImgBefore"
+      accept=".jpg, .jpeg, .png, .gif"
+      multiple="multiple"
+    ></el-upload>
+
+    <!-- 视频上传组件辅助 -->
+    <el-upload
+      class="avatar-uploader quill-video"
+      :action="dataObj.host"
+      :data="dataObj"
+      name="file"
+      :show-file-list="false"
+      :on-success="quillVideoSuccess"
+      :on-error="uploadError"
+      :before-upload="quillImgBefore"
+      accept=".mp4"
+    ></el-upload>
+
+    <!-- 富文本组件 -->
+    <quill-editor
+      class="editor"
+      v-model="content"
+      ref="quillEditor"
+      :options="editorOption"
+      @blur="onEditorBlur($event)"
+      @focus="onEditorFocus($event)"
+      @change="onEditorChange($event)"
+    ></quill-editor>
   </div>
 </template>
 
 <script>
-import Quill from "quill";
-import "quill/dist/quill.core.css";
-import "quill/dist/quill.snow.css";
-import "quill/dist/quill.bubble.css";
-import { getToken } from "@/utils/auth";
+  import {getToken} from "@/utils/auth";
+  import {quillEditor} from 'vue-quill-editor';
+  import "quill/dist/quill.core.css";
+  import "quill/dist/quill.snow.css";
+  import "quill/dist/quill.bubble.css";
 
-export default {
-  name: "Editor",
+  import {policy} from "../upload/policy";
+  import {getUUID} from "@/utils";
+
+  // 工具栏配置
+const toolbarOptions = [
+  ["bold", "italic", "underline", "strike"], // 加粗 斜体 下划线 删除线
+  ["blockquote", "code-block"], // 引用  代码块
+  [{ list: "ordered" }, { list: "bullet" }], // 有序、无序列表
+  [{ indent: "-1" }, { indent: "+1" }], // 缩进
+  [{ size: ["small", false, "large", "huge"] }], // 字体大小
+  [{ header: [1, 2, 3, 4, 5, 6, false] }], // 标题
+  [{ color: [] }, { background: [] }], // 字体颜色、字体背景颜色
+  [{ align: [] }], // 对齐方式
+  ["clean"], // 清除文本格式
+  ["link", "image"], // 链接、图片、视频  , "video"
+];
+
+  export default {
   props: {
     /* 编辑器的内容 */
     value: {
       type: String,
-      default: "",
     },
-    /* 高度 */
-    height: {
+    /* 图片大小 */
+    maxSize: {
       type: Number,
-      default: null,
+      default: 4000, //kb
     },
-    /* 最小高度 */
-    minHeight: {
-      type: Number,
-      default: null,
-    },
-    /* 只读 */
-    readOnly: {
-      type: Boolean,
-      default: false,
-    },
-    /* 上传地址 */
-    uploadUrl: {
-      type: String,
-      default: "",
-    }
   },
+  components: { quillEditor },
   data() {
     return {
-      headers: {
-        Authorization: "Bearer " + getToken()
-      },
-      Quill: null,
-      currentValue: "",
-      options: {
-        theme: "snow",
-        bounds: document.body,
-        debug: "warn",
-        modules: {
-          // 工具栏配置
-          toolbar: [
-            ["bold", "italic", "underline", "strike"],       // 加粗 斜体 下划线 删除线
-            ["blockquote", "code-block"],                    // 引用  代码块
-            [{ list: "ordered" }, { list: "bullet" }],       // 有序、无序列表
-            [{ indent: "-1" }, { indent: "+1" }],            // 缩进
-            [{ size: ["small", false, "large", "huge"] }],   // 字体大小
-            [{ header: [1, 2, 3, 4, 5, 6, false] }],         // 标题
-            [{ color: [] }, { background: [] }],             // 字体颜色、字体背景颜色
-            [{ align: [] }],                                 // 对齐方式
-            ["clean"],                                       // 清除文本格式
-            ["link", "image"]                                // 链接、图片
-          ],
-        },
+      content: this.value,
+      editorOption: {
+        theme: "snow", // or 'bubble'
         placeholder: "请输入内容",
-        readOnly: this.readOnly,
+        modules: {
+          toolbar: {
+            container: toolbarOptions,
+            handlers: {
+              image: function (value) {
+                if (value) {
+                  // 触发input框选择图片文件
+                  document.querySelector(".quill-img input").click();
+                } else {
+                  this.quill.format("image", false);
+                }
+              },
+              video: function (value) {
+                if (value) {
+                  // 触发input框选择图片文件
+                  document.querySelector(".quill-video input").click();
+                } else {
+                  this.quill.format("video", false);
+                }
+              },
+            },
+          },
+        },
       },
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+      dataObj: {
+        policy: "",
+        signature: "",
+        key: "",
+        ossaccessKeyId: "",
+        dir: "",
+        host: "",
+        // callback:'',
+      },
+      imgOrigin:[],
+      imgIndex:-1
     };
   },
-  computed: {
-    styles() {
-      let style = {};
-      if (this.minHeight) {
-        style.minHeight = `${this.minHeight}px`;
-      }
-      if (this.height) {
-        style.height = `${this.height}px`;
-      }
-      return style;
-    },
-  },
   watch: {
-    value: {
-      handler(val) {
-        if (val !== this.currentValue) {
-          this.currentValue = val === null ? "" : val;
-          if (this.Quill) {
-            this.Quill.pasteHTML(this.currentValue);
-          }
-        }
-      },
-      immediate: true,
+    value: function () {
+      this.content = this.value;
     },
-  },
-  mounted() {
-    this.init();
-  },
-  beforeDestroy() {
-    this.Quill = null;
   },
   methods: {
-    init() {
-      const editor = this.$refs.editor;
-      this.Quill = new Quill(editor, this.options);
-      // 如果设置了上传地址则自定义图片上传事件
-      if (this.uploadUrl) {
-        let toolbar = this.Quill.getModule("toolbar");
-        toolbar.addHandler("image", (value) => {
-          this.uploadType = "image";
-          if (value) {
-            this.$refs.upload.$children[0].$refs.input.click();
-          } else {
-            this.quill.format("image", false);
-          }
-        });
-        toolbar.addHandler("video", (value) => {
-          this.uploadType = "video";
-          if (value) {
-            this.$refs.upload.$children[0].$refs.input.click();
-          } else {
-            this.quill.format("video", false);
-          }
-        });
-      }
-      this.Quill.pasteHTML(this.currentValue);
-      this.Quill.on("text-change", (delta, oldDelta, source) => {
-        const html = this.$refs.editor.children[0].innerHTML;
-        const text = this.Quill.getText();
-        const quill = this.Quill;
-        this.currentValue = html;
-        this.$emit("input", html);
-        this.$emit("on-change", { html, text, quill });
-      });
-      this.Quill.on("text-change", (delta, oldDelta, source) => {
-        this.$emit("on-text-change", delta, oldDelta, source);
-      });
-      this.Quill.on("selection-change", (range, oldRange, source) => {
-        this.$emit("on-selection-change", range, oldRange, source);
-      });
-      this.Quill.on("editor-change", (eventName, ...args) => {
-        this.$emit("on-editor-change", eventName, ...args);
+    onEditorBlur() {
+      //失去焦点事件
+    },
+    onEditorFocus() {
+      //获得焦点事件
+    },
+    onEditorChange() {
+      //内容改变事件
+      this.$emit("input", this.content);
+    },
+
+    // 富文本图片上传前
+    quillImgBefore(file) {
+      let _self = this;
+      return new Promise((resolve, reject) => {
+        policy()
+          .then((response) => {
+            // console.info(response);
+            _self.dataObj.policy = response.policy;
+            _self.dataObj.signature = response.signature;
+            _self.dataObj.ossaccessKeyId = response.accessid;
+            // _self.dataObj.key = response.dir + getUUID()+'_${filename}';
+            //固定链接长度
+            _self.dataObj.key = response.dir + getUUID();
+            _self.dataObj.dir = response.dir;
+            _self.dataObj.host = response.host;
+            // 添加到队列
+            _self.imgOrigin.push({host: _self.dataObj.host,key:_self.dataObj.key})
+
+            resolve(true);
+          })
+          .catch((err) => {
+            console.log("出错了...", err);
+            reject(false);
+          });
       });
     },
-    handleUploadSuccess(res, file) {
+
+    quillImgSuccess(res, file) {
+      this.imgIndex+=1;
+      var url =
+        this.imgOrigin[this.imgIndex].host +
+        "/" +
+        this.imgOrigin[this.imgIndex].key.replace("${filename}", file.name);
+
+      // res为图片服务器返回的数据
       // 获取富文本组件实例
-      let quill = this.Quill;
+      let quill = this.$refs.quillEditor.quill;
       // 如果上传成功
-      if (res.code == 200) {
+      if (url) {
         // 获取光标所在位置
         let length = quill.getSelection().index;
         // 插入图片  res.url为服务器返回的图片地址
-        quill.insertEmbed(length, "image", res.url);
+        quill.insertEmbed(length, "image", url);
         // 调整光标到最后
         quill.setSelection(length + 1);
+        // console.log(url)
       } else {
         this.$message.error("图片插入失败");
       }
     },
-    handleUploadError() {
+    quillVideoSuccess(res, file) {
+      this.imgIndex+=1;
+      var url =
+        this.imgOrigin[this.imgIndex].host +
+        "/" +
+        this.imgOrigin[this.imgIndex].key.replace("${filename}", file.name);
+
+      // res为视频服务器返回的数据
+      // 获取富文本组件实例
+      let quill = this.$refs.quillEditor.quill;
+      // 如果上传成功
+      if (url) {
+        // 获取光标所在位置
+        let length = quill.getSelection().index;
+        // 插入视频  res.url为服务器返回的视频地址
+        quill.insertEmbed(length, "video", url);
+        // 调整光标到最后
+        quill.setSelection(length + 1);
+      } else {
+        this.$message.error("视频插入失败");
+      }
+    },
+    // 富文本图片上传失败
+    uploadError() {
+      // loading动画消失
       this.$message.error("图片插入失败");
     },
   },
@@ -180,12 +222,22 @@ export default {
 </script>
 
 <style>
-.editor, .ql-toolbar {
+.editor {
   white-space: pre-wrap !important;
   line-height: normal !important;
+  min-height: 192px;
 }
 .quill-img {
   display: none;
+}
+.quill-video {
+  display: none;
+}
+.ql-container{
+  min-height: 300px!important;
+}
+.quill-editor.editor {
+  min-height: 210px!important;
 }
 .ql-snow .ql-tooltip[data-mode="link"]::before {
   content: "请输入链接地址:";

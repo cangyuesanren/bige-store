@@ -60,4 +60,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{productImgId}
         </foreach>
     </delete>
+
+    <delete id="deleteMallProductImgsByProductId" parameterType="Long">
+        delete from mall_product_imgs where product_id = #{productId}
+    </delete>
 </mapper>

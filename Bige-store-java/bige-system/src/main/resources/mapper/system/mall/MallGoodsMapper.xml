@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bige.system.mapper.MallGoodsMapper">
-    
+
     <resultMap type="MallGoods" id="MallGoodsResult">
         <result property="goodsId"    column="goods_id"    />
         <result property="productId"    column="product_id"    />
@@ -16,6 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="totalNum"    column="total_num"    />
         <result property="stockLocked"    column="stock_locked"    />
         <result property="weight"    column="weight"    />
+        <result property="standardJson"    column="standard_json"    />
         <result property="volum"    column="volum"    />
         <result property="createTime"    column="create_time"    />
         <result property="createBy"    column="create_by"    />
@@ -23,12 +24,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectMallGoodsVo">
-        select goods_id, product_id, goods_name, goods_img, sale_price, cost_price, line_price, sale_num, total_num, stock_locked, weight, volum, create_time, create_by, update_time from mall_goods
+        select goods_id, product_id, goods_name, goods_img, sale_price, cost_price, line_price, sale_num, total_num, stock_locked, weight, standard_json, volum, create_time, create_by, update_time from mall_goods
     </sql>
 
     <select id="selectMallGoodsList" parameterType="MallGoods" resultMap="MallGoodsResult">
         <include refid="selectMallGoodsVo"/>
-        <where>  
+        <where>
             <if test="productId != null "> and product_id = #{productId}</if>
             <if test="goodsName != null  and goodsName != ''"> and goods_name like concat('%', #{goodsName}, '%')</if>
             <if test="goodsImg != null  and goodsImg != ''"> and goods_img = #{goodsImg}</if>
@@ -39,19 +40,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="totalNum != null "> and total_num = #{totalNum}</if>
             <if test="stockLocked != null "> and stock_locked = #{stockLocked}</if>
             <if test="weight != null "> and weight = #{weight}</if>
+            <if test="standardJson != null  and standardJson != ''"> and standard_json = #{standardJson}</if>
             <if test="volum != null "> and volum = #{volum}</if>
         </where>
     </select>
-    
+
     <select id="selectMallGoodsById" parameterType="Long" resultMap="MallGoodsResult">
         <include refid="selectMallGoodsVo"/>
         where goods_id = #{goodsId}
     </select>
-        
-    <insert id="insertMallGoods" parameterType="MallGoods">
+
+    <insert id="insertMallGoods" parameterType="MallGoods" useGeneratedKeys="true" keyProperty="goodsId">
         insert into mall_goods
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="goodsId != null">goods_id,</if>
             <if test="productId != null">product_id,</if>
             <if test="goodsName != null">goods_name,</if>
             <if test="goodsImg != null">goods_img,</if>
@@ -62,13 +63,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="totalNum != null">total_num,</if>
             <if test="stockLocked != null">stock_locked,</if>
             <if test="weight != null">weight,</if>
+            <if test="standardJson != null">standard_json,</if>
             <if test="volum != null">volum,</if>
             <if test="createTime != null">create_time,</if>
             <if test="createBy != null">create_by,</if>
             <if test="updateTime != null">update_time,</if>
-         </trim>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="goodsId != null">#{goodsId},</if>
             <if test="productId != null">#{productId},</if>
             <if test="goodsName != null">#{goodsName},</if>
             <if test="goodsImg != null">#{goodsImg},</if>
@@ -79,11 +80,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="totalNum != null">#{totalNum},</if>
             <if test="stockLocked != null">#{stockLocked},</if>
             <if test="weight != null">#{weight},</if>
+            <if test="standardJson != null">#{standardJson},</if>
             <if test="volum != null">#{volum},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="updateTime != null">#{updateTime},</if>
-         </trim>
+        </trim>
     </insert>
 
     <update id="updateMallGoods" parameterType="MallGoods">
@@ -99,6 +101,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="totalNum != null">total_num = #{totalNum},</if>
             <if test="stockLocked != null">stock_locked = #{stockLocked},</if>
             <if test="weight != null">weight = #{weight},</if>
+            <if test="standardJson != null">standard_json = #{standardJson},</if>
             <if test="volum != null">volum = #{volum},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
@@ -112,9 +115,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
 
     <delete id="deleteMallGoodsByIds" parameterType="String">
-        delete from mall_goods where goods_id in 
+        delete from mall_goods where goods_id in
         <foreach item="goodsId" collection="array" open="(" separator="," close=")">
             #{goodsId}
         </foreach>
+    </delete>
+
+    <delete id="deleteMallGoodsByProductId" parameterType="Long">
+        delete from mall_goods where product_id = #{productId}
     </delete>
 </mapper>

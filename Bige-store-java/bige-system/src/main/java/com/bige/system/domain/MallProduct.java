@@ -1,6 +1,8 @@
 package com.bige.system.domain;
 
 import java.math.BigDecimal;
+import java.util.List;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.bige.common.annotation.Excel;
@@ -22,6 +24,21 @@ public class MallProduct extends BaseEntity
     /** 商品名 */
     @Excel(name = "商品名")
     private String productName;
+
+    /** 商品图组*/
+    private List<MallProductImgs> productImgs;
+
+    /** 商品sku*/
+    private List<MallGoods> productGoods;
+
+    /** 商品spu*/
+    private List<MallProductStandard> productStandards;
+
+    /** 商品品牌*/
+    private String brandName;
+
+    /** 商品标签*/
+    private String labelName;
 
     /** 商品首图 */
     @Excel(name = "商品首图")
@@ -101,7 +118,7 @@ public class MallProduct extends BaseEntity
 
     /** 详情 */
     @Excel(name = "详情")
-    private String details;
+    private String productDetails;
 
     public void setProductId(Long productId) 
     {
@@ -292,44 +309,84 @@ public class MallProduct extends BaseEntity
     {
         return invoiceStatus;
     }
-    public void setDetails(String details) 
-    {
-        this.details = details;
+    public List<MallProductImgs> getProductImgs() {
+        return productImgs;
     }
 
-    public String getDetails() 
-    {
-        return details;
+    public void setProductImgs(List<MallProductImgs> productImgs) {
+        this.productImgs = productImgs;
+    }
+
+    public List<MallGoods> getProductGoods() {
+        return productGoods;
+    }
+
+    public void setProductGoods(List<MallGoods> productGoods) {
+        this.productGoods = productGoods;
+    }
+
+    public List<MallProductStandard> getProductStandards() {
+        return productStandards;
+    }
+
+    public void setProductStandards(List<MallProductStandard> productStandards) {
+        this.productStandards = productStandards;
+    }
+
+    public String getProductDetails() {
+        return productDetails;
+    }
+
+    public void setProductDetails(String productDetails) {
+        this.productDetails = productDetails;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public String getLabelName() {
+        return labelName;
+    }
+
+    public void setLabelName(String labelName) {
+        this.labelName = labelName;
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("productId", getProductId())
-            .append("productName", getProductName())
-            .append("firstImg", getFirstImg())
-            .append("brandId", getBrandId())
-            .append("labelId", getLabelId())
-            .append("templateId", getTemplateId())
-            .append("firstCategoryId", getFirstCategoryId())
-            .append("secondCategoryId", getSecondCategoryId())
-            .append("thirdCategoryId", getThirdCategoryId())
-            .append("supplierId", getSupplierId())
-            .append("saleNum", getSaleNum())
-            .append("virtualNum", getVirtualNum())
-            .append("productVideo", getProductVideo())
-            .append("totalNum", getTotalNum())
-            .append("salePrice", getSalePrice())
-            .append("linePrice", getLinePrice())
-            .append("origin", getOrigin())
-            .append("postage", getPostage())
-            .append("status", getStatus())
-            .append("auditStatus", getAuditStatus())
-            .append("invoiceStatus", getInvoiceStatus())
-            .append("createTime", getCreateTime())
-            .append("createBy", getCreateBy())
-            .append("updateTime", getUpdateTime())
-            .append("details", getDetails())
-            .toString();
+        return "MallProduct{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productImgs=" + productImgs +
+                ", productGoods=" + productGoods +
+                ", productStandards=" + productStandards +
+                ", brandName='" + brandName + '\'' +
+                ", labelName='" + labelName + '\'' +
+                ", firstImg='" + firstImg + '\'' +
+                ", brandId=" + brandId +
+                ", labelId=" + labelId +
+                ", templateId=" + templateId +
+                ", firstCategoryId=" + firstCategoryId +
+                ", secondCategoryId=" + secondCategoryId +
+                ", thirdCategoryId=" + thirdCategoryId +
+                ", supplierId=" + supplierId +
+                ", saleNum=" + saleNum +
+                ", virtualNum=" + virtualNum +
+                ", productVideo='" + productVideo + '\'' +
+                ", totalNum=" + totalNum +
+                ", salePrice=" + salePrice +
+                ", linePrice=" + linePrice +
+                ", origin='" + origin + '\'' +
+                ", postage='" + postage + '\'' +
+                ", status='" + status + '\'' +
+                ", auditStatus='" + auditStatus + '\'' +
+                ", invoiceStatus='" + invoiceStatus + '\'' +
+                ", productDetails='" + productDetails + '\'' +
+                '}';
     }
 }

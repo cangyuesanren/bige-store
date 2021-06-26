@@ -51,6 +51,19 @@ public class MallCategoryController extends BaseController
     }
 
     /**
+     * 查询品类信息树形列表
+     */
+    @ApiOperation(value = "查询品类信息树形列表")
+    @PreAuthorize("@ss.hasPermi('mall:category:list')")
+    @GetMapping("/listTree")
+    public AjaxResult listTree(MallCategory mallCategory)
+    {
+       /* System.out.println(mallCategory);*/
+        List<MallCategory> list = mallCategoryService.selectMallCategoryTreeList();
+        return AjaxResult.success(list);
+    }
+
+    /**
      * 导出品类信息列表
      */
     @ApiOperation(value = "导出品类信息列表")

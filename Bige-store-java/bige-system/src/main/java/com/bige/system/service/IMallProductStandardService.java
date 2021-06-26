@@ -58,4 +58,12 @@ public interface IMallProductStandardService
      * @return 结果
      */
     public int deleteMallProductStandardById(Long productId);
+
+    /**
+     * 删除商品规格信息根据商品Id
+     *
+     * @param productId 商品规格的商品ID
+     * @return 结果
+     */
+    public int deleteMallProductStandardByProductId(Long productId);
 }

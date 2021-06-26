@@ -8,9 +8,9 @@ import com.bige.common.core.domain.BaseEntity;
 
 /**
  * 商品sku对象 mall_goods
- * 
+ *
  * @author bige
- * @date 2021-06-13
+ * @date 2021-06-20
  */
 public class MallGoods extends BaseEntity
 {
@@ -59,115 +59,128 @@ public class MallGoods extends BaseEntity
     @Excel(name = "重量")
     private BigDecimal weight;
 
+    /** 规格值 */
+    @Excel(name = "规格值")
+    private String standardJson;
+
     /** 体积 */
     @Excel(name = "体积")
     private BigDecimal volum;
 
-    public void setGoodsId(Long goodsId) 
+    public void setGoodsId(Long goodsId)
     {
         this.goodsId = goodsId;
     }
 
-    public Long getGoodsId() 
+    public Long getGoodsId()
     {
         return goodsId;
     }
-    public void setProductId(Long productId) 
+    public void setProductId(Long productId)
     {
         this.productId = productId;
     }
 
-    public Long getProductId() 
+    public Long getProductId()
     {
         return productId;
     }
-    public void setGoodsName(String goodsName) 
+    public void setGoodsName(String goodsName)
     {
         this.goodsName = goodsName;
     }
 
-    public String getGoodsName() 
+    public String getGoodsName()
     {
         return goodsName;
     }
-    public void setGoodsImg(String goodsImg) 
+    public void setGoodsImg(String goodsImg)
     {
         this.goodsImg = goodsImg;
     }
 
-    public String getGoodsImg() 
+    public String getGoodsImg()
     {
         return goodsImg;
     }
-    public void setSalePrice(BigDecimal salePrice) 
+    public void setSalePrice(BigDecimal salePrice)
     {
         this.salePrice = salePrice;
     }
 
-    public BigDecimal getSalePrice() 
+    public BigDecimal getSalePrice()
     {
         return salePrice;
     }
-    public void setCostPrice(BigDecimal costPrice) 
+    public void setCostPrice(BigDecimal costPrice)
     {
         this.costPrice = costPrice;
     }
 
-    public BigDecimal getCostPrice() 
+    public BigDecimal getCostPrice()
     {
         return costPrice;
     }
-    public void setLinePrice(BigDecimal linePrice) 
+    public void setLinePrice(BigDecimal linePrice)
     {
         this.linePrice = linePrice;
     }
 
-    public BigDecimal getLinePrice() 
+    public BigDecimal getLinePrice()
     {
         return linePrice;
     }
-    public void setSaleNum(Long saleNum) 
+    public void setSaleNum(Long saleNum)
     {
         this.saleNum = saleNum;
     }
 
-    public Long getSaleNum() 
+    public Long getSaleNum()
     {
         return saleNum;
     }
-    public void setTotalNum(Long totalNum) 
+    public void setTotalNum(Long totalNum)
     {
         this.totalNum = totalNum;
     }
 
-    public Long getTotalNum() 
+    public Long getTotalNum()
     {
         return totalNum;
     }
-    public void setStockLocked(Long stockLocked) 
+    public void setStockLocked(Long stockLocked)
     {
         this.stockLocked = stockLocked;
     }
 
-    public Long getStockLocked() 
+    public Long getStockLocked()
     {
         return stockLocked;
     }
-    public void setWeight(BigDecimal weight) 
+    public void setWeight(BigDecimal weight)
     {
         this.weight = weight;
     }
 
-    public BigDecimal getWeight() 
+    public BigDecimal getWeight()
     {
         return weight;
     }
-    public void setVolum(BigDecimal volum) 
+    public void setStandardJson(String standardJson)
+    {
+        this.standardJson = standardJson;
+    }
+
+    public String getStandardJson()
+    {
+        return standardJson;
+    }
+    public void setVolum(BigDecimal volum)
     {
         this.volum = volum;
     }
 
-    public BigDecimal getVolum() 
+    public BigDecimal getVolum()
     {
         return volum;
     }
@@ -175,21 +188,22 @@ public class MallGoods extends BaseEntity
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("goodsId", getGoodsId())
-            .append("productId", getProductId())
-            .append("goodsName", getGoodsName())
-            .append("goodsImg", getGoodsImg())
-            .append("salePrice", getSalePrice())
-            .append("costPrice", getCostPrice())
-            .append("linePrice", getLinePrice())
-            .append("saleNum", getSaleNum())
-            .append("totalNum", getTotalNum())
-            .append("stockLocked", getStockLocked())
-            .append("weight", getWeight())
-            .append("volum", getVolum())
-            .append("createTime", getCreateTime())
-            .append("createBy", getCreateBy())
-            .append("updateTime", getUpdateTime())
-            .toString();
+                .append("goodsId", getGoodsId())
+                .append("productId", getProductId())
+                .append("goodsName", getGoodsName())
+                .append("goodsImg", getGoodsImg())
+                .append("salePrice", getSalePrice())
+                .append("costPrice", getCostPrice())
+                .append("linePrice", getLinePrice())
+                .append("saleNum", getSaleNum())
+                .append("totalNum", getTotalNum())
+                .append("stockLocked", getStockLocked())
+                .append("weight", getWeight())
+                .append("standardJson", getStandardJson())
+                .append("volum", getVolum())
+                .append("createTime", getCreateTime())
+                .append("createBy", getCreateBy())
+                .append("updateTime", getUpdateTime())
+                .toString();
     }
 }

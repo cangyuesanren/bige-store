@@ -95,7 +95,10 @@
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="categoryList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" row-key="categoryId"
+              :data="categoryList" @selection-change="handleSelectionChange"
+              :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
+    >
       <el-table-column type="selection" width="55" align="center" />
       <!--<el-table-column label="品类ID" align="center" prop="categoryId" />-->
       <el-table-column label="品类级别" align="center" prop="categoryType" >
@@ -113,8 +116,8 @@
           ></el-image>
         </template>
       </el-table-column>
-      <el-table-column label="父级ID" align="center" prop="parentId" />
-      <el-table-column label="排序" align="center" prop="sort" />
+
+      <el-table-column label="排序" align="center" prop<!--<el-table-column label="父级ID" align="center" prop="parentId" />-->="sort" />
       <!--<el-table-column label="佣金比例" align="center" prop="chargeRate" />-->
       <el-table-column label="状态" align="center" prop="status" >
         <template slot-scope="scope">
@@ -153,15 +156,23 @@
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="品类级别" prop="categoryType">
-          <el-select v-model="form.categoryType" @change="changeType" placeholder="请选择类型">
+          <el-select v-model="form.categoryType"  disabled  v-if="form.categoryId" @change="changeType" placeholder="请选择类型">
+            <el-option label="一级" value="1" />
+            <el-option label="二级" value="2" />
+            <el-option label="三级" value="3" />
+          </el-select>
+          <el-select v-model="form.categoryType"   v-else @change="changeType" placeholder="请选择类型">
             <el-option label="一级" value="1" />
             <el-option label="二级" value="2" />
             <el-option label="三级" value="3" />
           </el-select>
         </el-form-item>
-        <el-form-item label="父级ID" prop="parentId">
+        <el-form-item label="父级品类" prop="parentId">
          <!-- <el-input v-model="form.parentId"  placeholder="请输入父级ID" />-->
-          <el-select v-model="form.parentId" placeholder="请选择类型">
+          <el-select v-model="form.parentId" disabled  v-if="form.categoryId" placeholder="请选择类型">
+            <el-option :label="item.categoryName" :value="item.categoryId" v-for="(item,index) in fatherList" :key="index" />
+          </el-select>
+          <el-select v-model="form.parentId"  v-else placeholder="请选择类型">
             <el-option :label="item.categoryName" :value="item.categoryId" v-for="(item,index) in fatherList" :key="index" />
           </el-select>
         </el-form-item>
@@ -195,7 +206,10 @@
 </template>
 
 <script>
-import { listCategory, getCategory, delCategory, addCategory, updateCategory, exportCategory } from "@/api/mall/category";
+import {
+  listCategory, getCategory, delCategory, addCategory,
+  updateCategory, exportCategory, listTreeCategory,
+} from "@/api/mall/category";
 import imgUpload from "@/components/upload/imgUpload";
 
 export default {
@@ -252,20 +266,25 @@ export default {
     /** 查询品类信息列表 */
     getList() {
       this.loading = true;
-      listCategory(this.queryParams).then(response => {
+      /*listCategory(this.queryParams).then(response => {
         this.categoryList = response.rows;
         this.total = response.total;
         this.loading = false;
-      });
+      });*/
+
+      listTreeCategory(this.queryParams).then(response => {
+        this.categoryList = response.data;
+        this.loading = false;
+      })
     },
 
     getFatherListList(){
       if (this.form.categoryType == 1){
         this.fatherList = [{
-          categoryName: "0(0表示无父级)",categoryId:"0",
+          categoryName: "0(0表示无父级)",categoryId: 0,
         }]
-      }else {
-        listCategory({parentId:this.form.parentId}).then(response => {
+      } else {
+        listCategory({categoryType:this.form.categoryType-1}).then(response => {
           this.fatherList = response.rows
           for (let item of this.fatherList){
             if(this.form.categoryType == 2){
@@ -289,7 +308,7 @@ export default {
         categoryId: null,
         categoryName: null,
         categoryImg: null,
-        parentId: "0",
+        parentId: 0,
         categoryType: "1",
         sort: null,
         chargeRate: null,
@@ -328,10 +347,11 @@ export default {
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
+      this.form = row;
+      this.getFatherListList();
       const categoryId = row.categoryId || this.ids
       getCategory(categoryId).then(response => {
         this.form = response.data;
-        this.getFatherListList();
         this.open = true;
         this.title = "修改品类信息";
       });
